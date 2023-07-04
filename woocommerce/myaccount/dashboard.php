@@ -15,6 +15,7 @@
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
  * @version 4.4.0
+ * commento
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
