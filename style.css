@@ -1,0 +1,224 @@
+/*1
+ Theme Name:   Storefront-child
+ Theme URI:    http://sitename.com/storefront/
+ Description:  Storefront Child Theme
+ Author:       Ottavio Mazzaretto
+ Author URI:   http://sitename.com
+ Template:     storefront
+ Version:      1.0.98
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Tags:         light, dark, full-width, responsive-layout, accessibility-ready
+ Text Domain:  Storefront-child
+*/
+
+
+/* --------------- Theme customization starts here ----------------- */
+/* OGNI VOLTA CHE FAI UPGRADE CAMBIA LA VERSIONE MANNAGGIA*/
+
+.main-navigation {
+    background: white!important;
+}
+
+.home.blog .site-header, .home.page:not(.page-template-template-homepage) .site-header, .home.post-type-archive-product .site-header {
+    margin-bottom: 0;
+}
+
+/*.site-header {
+	position:fixed!important;
+	width:100%!important;
+	background:white!important;
+	top: 0!important;
+}*/
+
+/* VUOLE NELLO STYLE CSS DI DEFAULT; SENNO NON RICONOSCE LE COSE NEL WOO COMMERCE, INCEVE FACENDOLO DAL CSS 
+ * GIA DI DEFAULT SI. OPZIONE 2 FARMI IO IL PACHETTO COME LO VOGLIO CUSTOM E POI UPLOADARLO DOPO E FARMI UN TEMA
+ * IO OPPURE FARE COME QUELLO DI PASOL E CIAO 
+ * 
+ * @media (min-width: 768px) {
+	.site-header .site-logo-anchor img, .site-header .site-logo-link img, .site-header .custom-logo-link img {
+		width: 12%;
+		max-width: 210px;
+	}
+}
+
+
+@media (max-width: 767px) {
+	.site-header .site-logo-anchor img, .site-header .site-logo-link img, .site-header .custom-logo-link img {
+		width: 20%;
+		max-width: 210px;
+	}
+	.site-header {
+		position:fixed;
+		top:0px;
+		z-index:999;
+		width:100%;
+		height:41px;
+	}
+}
+ * */
+
+@media (min-width: 768px) {
+	.site-header .site-logo-anchor img, .site-header .site-logo-link img, .site-header .custom-logo-link img {
+		width: 12%;
+		max-width: 210px;
+	}
+}
+
+@media (min-width: 100px) and (max-width: 500px) {
+	.woocommerce-MyAccount-navigation ul li {
+		position: relative;
+		width: 100%;
+	}	
+}
+
+@media (min-width: 500px) and (max-width: 768px) {
+	.site-header .site-logo-anchor img, .site-header .site-logo-link img, .site-header .custom-logo-link img {
+		width: 20%;
+		max-width: 210px;
+		margin-top:-15px;
+	}
+	.main-navigation {
+		margin-top:-15px;
+		display:flex;
+		flex-direction:column;
+	}
+	/*
+	.site-header {
+		position:fixed;
+		top:0px;
+		z-index:999;
+		width:100%;
+	}*/
+	
+}
+
+@media (max-width: 500px) {
+	.site-header .site-logo-anchor img, .site-header .site-logo-link img, .site-header .custom-logo-link img {
+		width: 30%;
+		max-width: 210px;
+		margin-top:-15px;
+	}
+	.main-navigation {
+		margin-top:-15px;
+		display:flex;
+		flex-direction:column;
+	}	
+}
+
+.woocommerce-active .site-branding {
+	width:50%
+}
+
+/* STYLING FOR WOOCOMMERCE CART PAGE */
+
+/** empty cart**/
+.empty-cart h2 {
+    line-height: 2em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+ }
+ .empty-cart p {
+    line-height: 2em;
+    max-width: 600px;
+    margin: auto;
+ }
+ .empty-cart {
+    text-align: center;
+    padding-bottom: 10vw;
+ }
+ .container .return-to-shop {
+    text-align: center ;
+    padding-bottom: 80px;
+ }
+ .empty-cart-header {
+    float: right;
+    margin-top: -50px;
+    position: relative;
+ }
+    .empty-cart-header .woocommerce-breadcrumb {
+        display: none;
+    }
+ 
+ .empty-cart-icon {
+    display: inline-block;
+    line-height: initial;
+    font-size: 2rem;
+    color: #17594D;
+    border: 2px solid #17594D;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    padding: 1rem;
+    margin-bottom: 20px;
+ }
+ 
+ .empty-cart-icon-div {
+    display: flex;
+    width: 100%;
+    justify-content:center;
+}
+
+/** Styling the tables **/
+table.variations{
+  border: none;
+}
+
+th.label {
+	border: none;
+}
+
+td.value {
+	border: none;
+}
+
+table, th, td {
+  border: 1px solid;
+}
+
+/* I Have generate this is the product description, add this class to all the other descriptions */
+
+table.productTable :nth-child(even) td{
+    background: #eeeeee!important;
+}
+
+
+.woocommerce-error {
+	background-color: #F08080
+	
+}
+
+.woocommerce-message .restore-item {
+    float: right;
+    padding: 0 0 0 1em;
+    background: 0 0;
+    color: #fff;
+    box-shadow: none;
+    line-height: 1.618;
+    border-width: 0 0 0 1px;
+    border-left-style: solid;
+    border-left-color: rgba(255,255,255,.25)!important;
+    border-radius: 0;
+}
+
+.woocommerce-message .restore-item:hover {
+    background: 0 0;
+    color: #fff;
+    opacity: .8;
+}
+
+.woocommerce-MyAccount-navigation{
+	display: flex!important;
+	flex-wrap: wrap;
+	justify-content: center!important;
+}
+
+#sample_slider {
+	width:90%;
+}
+
+element-style {
+	width: 90%;
+}
+
