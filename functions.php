@@ -106,7 +106,7 @@ function greet_user( $atts ) {
 	} elseif ( $current_hour >= 24 || $current_hour < 5 ) {
         $greeting = 'Good night';
 	} elseif ( $current_hour >= 18 && $current_hour < 23 ) {
-        $greeting = 'Good evening';
+        $greeting = 'Good evening ';
     } else {
         $greeting = 'Hellooo';
     }
