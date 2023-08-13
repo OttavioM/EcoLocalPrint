@@ -171,7 +171,7 @@ function greet_user( $atts ) {
     
     $user = wp_get_current_user();
     if ( ! is_user_logged_in() ) {
-        $name = 'guest';
+        $name = 'Guest';
     } else {
         $name = $user->display_name;
     }
@@ -195,7 +195,7 @@ function greet_user( $atts ) {
     }
 
     // Output the greeting message
-    $output = '<span class="greeting-message">' . $greeting .' '. ', <span style="color:darkolivegreen;font-weight:bold;"> ' . $name . '</span>!</span>';
+    $output = '<span class="greeting-message">' . $greeting  . ', <span style="color:darkolivegreen;font-weight:bold;"> ' .' ' .  $name . '</span>!</span>';
 
     // Apply custom CSS styles
     $output .= '<style>';
