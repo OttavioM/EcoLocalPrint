@@ -186,12 +186,12 @@ function greet_user( $atts ) {
         $greeting = 'Good morning';
     } elseif ( $current_hour >= 12 && $current_hour < 18 ) {
         $greeting = 'Good afternoon';
-	} elseif ( $current_hour >= 24 || $current_hour < 5 ) {
-        $greeting = 'Good night';
+	} elseif ( $current_hour >= 23 || $current_hour < 5 ) {
+        $greeting = 'Good night' .$time_zone .$current_hour;
 	} elseif ( $current_hour >= 18 && $current_hour < 23 ) {
         $greeting = 'Good evening';
     } else {
-        $greeting = 'Hellooo' .$time_zone .$current_hour;
+        $greeting = 'Hellooo';
     }
 
     // Output the greeting message
