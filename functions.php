@@ -81,6 +81,87 @@ add_filter('woocommerce_cart_is_empty', 'ds_custom_wc_empty_cart_text', 20 );
 
 
 /**ADDING SHORTCODES */
+
+// $time_zone = getTimeZoneFromIpAddress();
+// echo 'Your Time Zone is '.$time_zone;
+
+// take the timezone from the ip of the user
+// I also use geoplugin api
+function getTimeZoneFromIpAddress(){
+    $clientsIpAddress = get_client_ip();
+
+    $clientInformation = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$clientsIpAddress));
+
+    $clientsLatitude = $clientInformation['geoplugin_latitude'];
+    $clientsLongitude = $clientInformation['geoplugin_longitude'];
+    $clientsCountryCode = $clientInformation['geoplugin_countryCode'];
+
+    $timeZone = get_nearest_timezone($clientsLatitude, $clientsLongitude, $clientsCountryCode) ;
+
+    return $timeZone;
+
+}
+
+// take the ip client from the pc or the server
+function get_client_ip() {
+    $ipaddress = '';
+    if (getenv('HTTP_CLIENT_IP'))
+        $ipaddress = getenv('HTTP_CLIENT_IP');
+    else if(getenv('HTTP_X_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+    else if(getenv('HTTP_X_FORWARDED'))
+        $ipaddress = getenv('HTTP_X_FORWARDED');
+    else if(getenv('HTTP_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_FORWARDED_FOR');
+    else if(getenv('HTTP_FORWARDED'))
+        $ipaddress = getenv('HTTP_FORWARDED');
+    else if(getenv('REMOTE_ADDR'))
+        $ipaddress = getenv('REMOTE_ADDR');
+    else
+        $ipaddress = 'UNKNOWN';
+    return $ipaddress;
+}
+
+// get the timezone of the user from ip and lon lat to then greet the user the correct hour
+function get_nearest_timezone($cur_lat, $cur_long, $country_code = '') {
+    $timezone_ids = ($country_code) ? DateTimeZone::listIdentifiers(DateTimeZone::PER_COUNTRY, $country_code)
+        : DateTimeZone::listIdentifiers();
+
+    if($timezone_ids && is_array($timezone_ids) && isset($timezone_ids[0])) {
+
+        $time_zone = '';
+        $tz_distance = 0;
+
+        //only one identifier?
+        if (count($timezone_ids) == 1) {
+            $time_zone = $timezone_ids[0];
+        } else {
+
+            foreach($timezone_ids as $timezone_id) {
+                $timezone = new DateTimeZone($timezone_id);
+                $location = $timezone->getLocation();
+                $tz_lat   = $location['latitude'];
+                $tz_long  = $location['longitude'];
+
+                $theta    = $cur_long - $tz_long;
+                $distance = (sin(deg2rad($cur_lat)) * sin(deg2rad($tz_lat)))
+                    + (cos(deg2rad($cur_lat)) * cos(deg2rad($tz_lat)) * cos(deg2rad($theta)));
+                $distance = acos($distance);
+                $distance = abs(rad2deg($distance));
+                // echo '<br />'.$timezone_id.' '.$distance;
+
+                if (!$time_zone || $tz_distance > $distance) {
+                    $time_zone   = $timezone_id;
+                    $tz_distance = $distance;
+                }
+
+            }
+        }
+        return  $time_zone;
+    }
+    return 'unknown';
+}
+
 // greetings to the user
 function greet_user( $atts ) {
     // Extract the shortcode attributes
@@ -95,13 +176,7 @@ function greet_user( $atts ) {
         $name = $user->display_name;
     }
 
-    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-        $ip = $_SERVER['HTTP_CLIENT_IP'];
-    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    } else {
-        $ip = $_SERVER['REMOTE_ADDR'];
-    }
+    $time_zone = getTimeZoneFromIpAddress();
 
     // Get the current hour in 24-hour format
     $current_hour = date('G');
@@ -114,13 +189,13 @@ function greet_user( $atts ) {
 	} elseif ( $current_hour >= 24 || $current_hour < 5 ) {
         $greeting = 'Good night';
 	} elseif ( $current_hour >= 18 && $current_hour < 23 ) {
-        $greeting = 'Good evening' .$ip;
+        $greeting = 'Good evening';
     } else {
-        $greeting = 'Hellooo';
+        $greeting = 'Hellooo' .$time_zone .$current_hour;
     }
 
     // Output the greeting message
-    $output = '<span class="greeting-message">' . $greeting . ', <span style="color:darkolivegreen;font-weight:bold;"> ' . $name . '</span>!</span>';
+    $output = '<span class="greeting-message">' . $greeting .' '. ', <span style="color:darkolivegreen;font-weight:bold;"> ' . $name . '</span>!</span>';
 
     // Apply custom CSS styles
     $output .= '<style>';
