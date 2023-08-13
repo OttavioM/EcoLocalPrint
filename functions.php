@@ -178,6 +178,9 @@ function greet_user( $atts ) {
 
     $time_zone = getTimeZoneFromIpAddress();
 
+    // change timezone
+    date_default_timezone_set($time_zone);
+
     // Get the current hour in 24-hour format
     $current_hour = date('G');
 
