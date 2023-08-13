@@ -95,6 +95,14 @@ function greet_user( $atts ) {
         $name = $user->display_name;
     }
 
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } else {
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }
+
     // Get the current hour in 24-hour format
     $current_hour = date('G');
 
@@ -106,7 +114,7 @@ function greet_user( $atts ) {
 	} elseif ( $current_hour >= 24 || $current_hour < 5 ) {
         $greeting = 'Good night';
 	} elseif ( $current_hour >= 18 && $current_hour < 23 ) {
-        $greeting = 'Good evening' + $current_hour;
+        $greeting = 'Good evening';
     } else {
         $greeting = 'Hellooo';
     }
