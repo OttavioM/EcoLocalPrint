@@ -184,6 +184,9 @@ function greet_user( $atts ) {
     // Get the current hour in 24-hour format
     $current_hour = date('G');
 
+    // TODO: Add greeting in variuos languages
+    // ita, esp, port, french, german at least
+
     // Set the greeting message based on the current hour
     if ( $current_hour >= 5 && $current_hour < 12 ) {
         $greeting = 'Good morning';
