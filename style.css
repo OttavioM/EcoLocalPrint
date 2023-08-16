@@ -225,7 +225,7 @@ element-style {
 /* the button of the categories in products shop is
 over the letters due to a <br> in the code*/
 
-.button.wc-block-product-categories__button {
+.wc-block-product-categories__button {
     align-items: center;
     display: flex;
     margin: 0;
