@@ -222,3 +222,15 @@ element-style {
 	width: 90%;
 }
 
+/* the button of the categories in products shop is
+over the letters due to a <br> in the code*/
+
+.wc-block-product-categories__button {
+    align-items: center;
+    display: flex;
+    margin: 0;
+    overflow: hidden;
+    padding: 0 0.5em;
+    position: relative;
+    margin-top: 1.56em;
+}
