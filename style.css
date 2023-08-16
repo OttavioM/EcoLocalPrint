@@ -232,5 +232,5 @@ over the letters due to a <br> in the code*/
     overflow: hidden;
     padding: 0 0.5em;
     position: relative;
-    margin-top: 1.56em;
+    margin-top: 1.56em; !important
 }
