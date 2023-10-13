@@ -15,6 +15,7 @@
 
 /* --------------- Theme customization starts here ----------------- */
 /* OGNI VOLTA CHE FAI UPGRADE CAMBIA LA VERSIONE MANNAGGIA non piu con vs code :) */
+/* ADESSO SI CON VS CODE E SINCRONIZZATO DIRETTAMENTE CON LA PAGINA ONLINE :)  */
 
 .main-navigation {
     background: white!important;
@@ -22,6 +23,11 @@
 
 .home.blog .site-header, .home.page:not(.page-template-template-homepage) .site-header, .home.post-type-archive-product .site-header {
     margin-bottom: 0;
+}
+
+/* HIDE POST ON AND POST BY */
+.posted-on{
+	display: none;
 }
 
 /*.site-header {
