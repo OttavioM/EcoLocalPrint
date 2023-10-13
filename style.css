@@ -26,8 +26,8 @@
 }
 
 /* HIDE POST ON AND POST BY */
-.entry-meta {
-	display: none;
+.posted-on{
+	display: none!important;
 }
 
 /*.site-header {
