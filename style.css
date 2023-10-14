@@ -36,12 +36,12 @@ b, strong{
 }
 
 /* HOMEPAGE PRODUCTS SLIDER */
-.metaslider-id-640 {
+#metaslider-id-640 {
 	display: flex;
 	justify-content: center;
 }
 
-.metaslider-id-640 a {
+#metaslider-id-640 a {
 	color: white;
   }
 
