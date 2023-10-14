@@ -35,6 +35,16 @@ b, strong{
 	color: black!important;
 }
 
+/* HOMEPAGE PRODUCTS SLIDER */
+.metaslider-id-640 {
+	display: flex;
+	justify-content: center;
+}
+
+.metaslider-id-640 a {
+	color: white;
+  }
+
 /*.site-header {
 	position:fixed!important;
 	width:100%!important;
