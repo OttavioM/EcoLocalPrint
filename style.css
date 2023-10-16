@@ -36,8 +36,8 @@ b, strong{
 }
 
 /* HOMEPAGE PRODUCTS SLIDER */
-div#metaslider_container_640{
-	justify-content: center!important;
+#metaslider-id-640{
+	/* justify-content: center!important; */
 	display: flex!important;
 }
 #metaslider-id-640 ul.slides {
