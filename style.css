@@ -37,13 +37,13 @@ b, strong{
 
 /* HOMEPAGE PRODUCTS SLIDER */
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
 	#metaslider-id-640 ul.slides {
 	  justify-content: center !important;
 	  display: flex !important;
 	  width: 100%!important;
 	}
-  }
+  } */
 
 #metaslider-id-640 a {
 	color: white!important;
