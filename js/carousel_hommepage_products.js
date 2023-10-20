@@ -39,6 +39,7 @@ window.onload = function() {
     var liElements = ulElement.getElementsByTagName('li');
   
     console.log('ulElement:', ulElement); // Log the ul element
+    console.log('ul.slide width is: ' + ulElement.offsetWidth)
   
     var totalWidth = 0;
   
