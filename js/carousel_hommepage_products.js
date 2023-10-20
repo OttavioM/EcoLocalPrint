@@ -29,4 +29,4 @@ document.addEventListener('DOMContentLoaded', function() {
     ulElement.style.display = 'block'; // Revert to the default value if it's not greater
     ulElement.style.justifyContent = ''; // Revert justify-content if not greater
     }
-}
+});
