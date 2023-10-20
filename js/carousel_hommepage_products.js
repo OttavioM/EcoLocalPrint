@@ -14,7 +14,7 @@ for (var i = 0; i < liElements.length; i++) {
   }
 }
 console.log('li elements: ' + liElements)
-console.log('ui elements: ' + ulElements)
+console.log('ui elements: ' + ulElement)
 console.log('Total width including spaces: ' + totalWidth + 'px');
 
 // Now, check if the ul.slides width is greater than totalWidth
