@@ -37,6 +37,36 @@
 //     }
 //   };
 
+// function handleMetaslider() {
+//   // JavaScript code goes here
+//   var ulElement = document.getElementById('metaslider-id-640').querySelector('ul.slides');
+//   var liElements = ulElement.getElementsByTagName('li');
+
+//   var totalWidth = 0;
+
+//   for (var i = 0; i < liElements.length; i++) {
+//     totalWidth += liElements[i].offsetWidth; // Width of the li element
+//     if (i < liElements.length - 1) {
+//       // Add space between elements (margin-right)
+//       totalWidth += parseInt(window.getComputedStyle(liElements[i]).marginRight, 10);
+//     }
+//   }
+
+//   console.log('Total width including spaces: ' + totalWidth + 'px');
+//   console.log('JS with DOM');
+
+//   // Now, check if the ul.slides width is greater than totalWidth
+//   if (ulElement.offsetWidth > totalWidth) {
+//     ulElement.style.display = 'flex';
+//     ulElement.style.justifyContent = 'center'; // Add justify-content: center
+//     ulElement.style.width = '100%';
+//   } else {
+//     ulElement.style.display = 'block'; // Revert to the default value if it's not greater
+//     ulElement.style.justifyContent = ''; // Revert justify-content if not greater
+//     ulElement.style.width = '1000%'; // as default
+//   }
+// }
+
 function handleMetaslider() {
   // JavaScript code goes here
   var ulElement = document.getElementById('metaslider-id-640').querySelector('ul.slides');
@@ -68,13 +98,30 @@ function handleMetaslider() {
 }
 
 // Call the function when the DOM content is loaded
-document.addEventListener('DOMContentLoaded', handleMetaslider);
-
-// Call the function when the window is resized
-window.addEventListener('resize', handleMetaslider);
-
-// Call the function when the page is reloaded
-window.addEventListener('load', handleMetaslider);
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
+  // Add a specific event listener for #metaslider-id-64 when it's ready
+  var metasliderElement = document.getElementById('metaslider-id-640');
+  if (metasliderElement) {
+    metasliderElement.addEventListener('DOMContentLoaded', handleMetaslider);
+  } else {
+    // If #metaslider-id-64 is not present, call handleMetaslider directly
     handleMetaslider();
-  };
+  }
+
+  // Call the function when the window is resized
+  window.addEventListener('resize', handleMetaslider);
+
+});
+
+
+// // Call the function when the DOM content is loaded
+// document.addEventListener('DOMContentLoaded', handleMetaslider);
+
+// // Call the function when the window is resized
+// window.addEventListener('resize', handleMetaslider);
+
+// // Call the function when the page is reloaded
+// window.addEventListener('load', handleMetaslider);
+// window.onload = function() {
+//     handleMetaslider();
+//   };
