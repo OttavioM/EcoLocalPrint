@@ -103,7 +103,7 @@ function handleMetaslider(totalWidth = 1520) {
   } else {
     ulElement.style.display = 'block'; // Revert to the default value if it's not greater
     ulElement.style.justifyContent = ''; // Revert justify-content if not greater
-    ulElement.style.width = '100%'; // as default
+    ulElement.style.width = '1000%'; // as default
     console.log('ul.slide.width is < totalWidth')
   }
 }
@@ -136,4 +136,4 @@ window.onload = function() {
   };
 
 // Add an event listener for changes in the user's zoom level (scaling)
-// window.addEventListener('resize', handleZoomChange);
+window.addEventListener('resize', handleZoomChange);
