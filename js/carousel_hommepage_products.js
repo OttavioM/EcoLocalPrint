@@ -4,6 +4,8 @@
 var ulElement = document.getElementById('metaslider-id-640').querySelector('ul.slides');
 var liElements = ulElement.getElementsByTagName('li');
 
+console.log('ulElement:', ulElement); // Log the ul element
+
 var totalWidth = 0;
 
 for (var i = 0; i < liElements.length; i++) {
@@ -12,9 +14,10 @@ for (var i = 0; i < liElements.length; i++) {
     // Add space between elements (margin-right)
     totalWidth += parseInt(window.getComputedStyle(liElements[i]).marginRight, 10);
   }
+  
+  console.log('liElement ' + i + ':', liElements[i]); // Log each li element
 }
-console.log('li elements: ' + liElements)
-console.log('ui elements: ' + ulElement)
+
 console.log('Total width including spaces: ' + totalWidth + 'px');
 
 // Now, check if the ul.slides width is greater than totalWidth
