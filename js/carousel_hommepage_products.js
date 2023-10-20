@@ -94,7 +94,7 @@ function handleMetaslider(totalWidth = 1520) {
   // console.log('Total width including spaces: ' + totalWidth + 'px');
   // console.log('JS with DOM');
 
-  console.log('ul.slides.width: ' +ulElement.offsetWidth)
+  console.log('ul.slides.width: ' + ulElement.offsetWidth)
   // Now, check if the ul.slides width is greater than totalWidth
   if (ulElement.offsetWidth > totalWidth) {
     ulElement.style.display = 'flex';
@@ -108,6 +108,9 @@ function handleMetaslider(totalWidth = 1520) {
     console.log('ul.slide.width is < totalWidth')
   }
 }
+// You can call the function without providing a totalWidth argument,
+// and it will use the default value of 1520 pixels.
+handleMetaslider(); // Default totalWidth of 1520px is used
 
 // Function to handle changes in zoom level
 function handleZoomChange() {
@@ -118,9 +121,6 @@ function handleZoomChange() {
   handleMetaslider(totalWidth);
 }
 
-// You can call the function without providing a totalWidth argument,
-// and it will use the default value of 1520 pixels.
-handleMetaslider(); // Default totalWidth of 1520px is used
 
 // Call the function when the DOM content is loaded
 document.addEventListener('DOMContentLoaded', handleMetaslider);
