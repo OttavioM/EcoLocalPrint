@@ -57,7 +57,7 @@ window.onload = function() {
     console.log('Total width including spaces: ' + totalWidth + 'px');
     console.log('JS with DOM');
   
-    Now, check if the ul.slides width is greater than totalWidth
+    // Now, check if the ul.slides width is greater than totalWidth
     if (ulElement.offsetWidth/10 > totalWidth) {
       ulElement.style.display = 'flex';
       ulElement.style.justifyContent = 'center'; // Add justify-content: center
