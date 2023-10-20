@@ -213,7 +213,8 @@ function greet_user( $atts ) {
 add_shortcode( 'greet_user', 'greet_user' );
 
 function my_custom_scripts() {
-    wp_enqueue_script( 'carousel_hommepage_products', get_stylesheet_directory_uri() . '/js/carousel_hommepage_products.js', array( 'jquery' ),'',true );
+    //DEFEATED
+    // wp_enqueue_script( 'carousel_hommepage_products', get_stylesheet_directory_uri() . '/js/carousel_hommepage_products.js', array( 'jquery' ),'',true );
 }
 add_action( 'wp_enqueue_scripts', 'my_custom_scripts' );
 
