@@ -93,6 +93,7 @@ function handleMetaslider(totalWidth = 1520) {
   // console.log('Total width including spaces: ' + totalWidth + 'px');
   // console.log('JS with DOM');
 
+  console.log('ul.slides.width: ' +ulElement.offsetWidth)
   // Now, check if the ul.slides width is greater than totalWidth
   if (ulElement.offsetWidth > totalWidth) {
     ulElement.style.display = 'flex';
