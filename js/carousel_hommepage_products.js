@@ -25,8 +25,10 @@ window.onload = function() {
     if (ulElement.offsetWidth > totalWidth) {
     ulElement.style.display = 'flex';
     ulElement.style.justifyContent = 'center'; // Add justify-content: center
+    ulElement.style.width = '100%';
     } else {
     ulElement.style.display = 'block'; // Revert to the default value if it's not greater
     ulElement.style.justifyContent = ''; // Revert justify-content if not greater
+    ulElement.style.width = '1000%'; // as default
     }
 }
