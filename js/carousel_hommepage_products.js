@@ -13,7 +13,8 @@ for (var i = 0; i < liElements.length; i++) {
     totalWidth += parseInt(window.getComputedStyle(liElements[i]).marginRight, 10);
   }
 }
-
+console.log('li elements: ' + liElements)
+console.log('ui elements: ' + ulElements)
 console.log('Total width including spaces: ' + totalWidth + 'px');
 
 // Now, check if the ul.slides width is greater than totalWidth
