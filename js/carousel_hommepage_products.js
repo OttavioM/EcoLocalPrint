@@ -10,10 +10,10 @@ var totalWidth = 0;
 
 for (var i = 0; i < liElements.length; i++) {
   totalWidth += liElements[i].offsetWidth; // Width of the li element
-  if (i < liElements.length - 1) {
-    // Add space between elements (margin-right)
-    totalWidth += parseInt(window.getComputedStyle(liElements[i]).marginRight, 10);
-  }
+//   if (i < liElements.length - 1) {
+//     // Add space between elements (margin-right)
+//     totalWidth += parseInt(window.getComputedStyle(liElements[i]).marginRight, 10);
+//   }
   
   console.log('liElement ' + i + ':', liElements[i]); // Log each li element
 }
