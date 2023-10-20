@@ -87,8 +87,8 @@ function calculateTotalWidth() {
 
 function handleMetaslider(totalWidth = 1520) {
   // JavaScript code goes here
-  // var ulElement = document.getElementById('metaslider-id-640').querySelector('ul.slides');
-  // var liElements = ulElement.getElementsByTagName('li');
+  var ulElement = document.getElementById('metaslider-id-640').querySelector('ul.slides');
+  var liElements = ulElement.getElementsByTagName('li');
 
   // console.log('Total width including spaces: ' + totalWidth + 'px');
   // console.log('JS with DOM');
