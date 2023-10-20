@@ -103,9 +103,18 @@ function handleMetaslider(totalWidth = 1520) {
   } else {
     ulElement.style.display = 'block'; // Revert to the default value if it's not greater
     ulElement.style.justifyContent = ''; // Revert justify-content if not greater
-    ulElement.style.width = '1000%'; // as default
+    ulElement.style.width = '100%'; // as default
     console.log('ul.slide.width is < totalWidth')
   }
+}
+
+// Function to handle changes in zoom level
+function handleZoomChange() {
+  // Recalculate totalWidth when the user zooms in or out
+  var totalWidth = calculateTotalWidth();
+
+  // Call handleMetaslider with the updated totalWidth
+  handleMetaslider(totalWidth);
 }
 
 // You can call the function without providing a totalWidth argument,
@@ -125,3 +134,6 @@ window.onload = function() {
     console.log('Total width including spaces: ' + totalWidth + 'px');
     handleMetaslider(totalWidth);
   };
+
+// Add an event listener for changes in the user's zoom level (scaling)
+window.addEventListener('resize', handleZoomChange);
