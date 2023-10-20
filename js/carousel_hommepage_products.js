@@ -97,22 +97,15 @@ function handleMetaslider() {
   }
 }
 
-// Call the function when the DOM content is loaded
-document.addEventListener('DOMContentLoaded', function() {
-  // Add a specific event listener for #metaslider-id-64 when it's ready
-  var metasliderElement = document.getElementById('metaslider-id-640').querySelector('ul.slides');
-  if (metasliderElement) {
-    metasliderElement.addEventListener('DOMContentLoaded', handleMetaslider);
-  } else {
-    // If #metaslider-id-64 is not present, call handleMetaslider directly
-    handleMetaslider();
-  }
+// Add an event listener for the load event on the #metaslider-id-640 element
+var metasliderElement = document.getElementById('metaslider-id-640');
 
-  // Call the function when the window is resized
-  window.addEventListener('resize', handleMetaslider);
-
-});
-
+if (metasliderElement) {
+  metasliderElement.addEventListener('load', handleMetaslider);
+} else {
+  // If #metaslider-id-640 is not present, call handleMetaslider directly
+  handleMetaslider();
+}
 
 // // Call the function when the DOM content is loaded
 // document.addEventListener('DOMContentLoaded', handleMetaslider);
