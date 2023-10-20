@@ -1,6 +1,6 @@
 //js/carousel_hommepage_products.js
 
-document.addEventListener('DOMContentLoaded', function() {
+window.onload = function() {
     // JavaScript code goes here
     var ulElement = document.getElementById('metaslider-id-640').querySelector('ul.slides');
     var liElements = ulElement.getElementsByTagName('li');
@@ -29,4 +29,4 @@ document.addEventListener('DOMContentLoaded', function() {
     ulElement.style.display = 'block'; // Revert to the default value if it's not greater
     ulElement.style.justifyContent = ''; // Revert justify-content if not greater
     }
-});
+}
