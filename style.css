@@ -37,6 +37,9 @@ b, strong{
 
 /* HOMEPAGE PRODUCTS SLIDER */
 
+#metaslider-id-640 ul.slides {
+	width: 5000em!important;
+}
 /* @media (min-width: 768px) {
 	#metaslider-id-640 ul.slides {
 	  justify-content: center !important;
