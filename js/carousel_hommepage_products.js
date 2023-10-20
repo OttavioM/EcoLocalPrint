@@ -120,5 +120,5 @@ window.addEventListener('load', handleMetaslider);
 window.onload = function() {
     var totalWidth = calculateTotalWidth();
     console.log('Total width including spaces: ' + totalWidth + 'px');
-    handleMetaslider();
+    handleMetaslider(totalWidth);
   };
