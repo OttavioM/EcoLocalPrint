@@ -36,8 +36,7 @@
 //       console.log('here we have ulElement.offsetWidth < totalWidth');
 //     }
 //   };
-
-function handleMetaslider() {
+window.onload = function handleMetaslider() {
     // JavaScript code goes here
     var ulElement = document.getElementById('metaslider-id-640').querySelector('ul.slides');
     var liElements = ulElement.getElementsByTagName('li');
