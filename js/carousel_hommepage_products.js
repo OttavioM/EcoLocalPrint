@@ -100,7 +100,7 @@ function handleMetaslider() {
 // Call the function when the DOM content is loaded
 document.addEventListener('DOMContentLoaded', function() {
   // Add a specific event listener for #metaslider-id-64 when it's ready
-  var metasliderElement = document.getElementById('metaslider-id-640');
+  var metasliderElement = document.getElementById('metaslider-id-640').querySelector('ul.slides');
   if (metasliderElement) {
     metasliderElement.addEventListener('DOMContentLoaded', handleMetaslider);
   } else {
