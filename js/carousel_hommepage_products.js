@@ -1,6 +1,6 @@
 //js/carousel_hommepage_products.js
 
-window.onload = function() {
+// window.onload = function() {
     // JavaScript code goes here
     var ulElement = document.getElementById('metaslider-id-640').querySelector('ul.slides');
     var liElements = ulElement.getElementsByTagName('li');
@@ -31,4 +31,4 @@ window.onload = function() {
     ulElement.style.justifyContent = ''; // Revert justify-content if not greater
     ulElement.style.width = '1000%'; // as default
     }
-}
+// }
