@@ -67,20 +67,10 @@
 //   }
 // }
 
-function handleMetaslider() {
+function handleMetaslider(totalWidth = 1520) {
   // JavaScript code goes here
   var ulElement = document.getElementById('metaslider-id-640').querySelector('ul.slides');
   var liElements = ulElement.getElementsByTagName('li');
-
-  var totalWidth = 0;
-
-  for (var i = 0; i < liElements.length; i++) {
-    totalWidth += liElements[i].offsetWidth; // Width of the li element
-    if (i < liElements.length - 1) {
-      // Add space between elements (margin-right)
-      totalWidth += parseInt(window.getComputedStyle(liElements[i]).marginRight, 10);
-    }
-  }
 
   console.log('Total width including spaces: ' + totalWidth + 'px');
   console.log('JS with DOM');
@@ -97,24 +87,18 @@ function handleMetaslider() {
   }
 }
 
-// Add an event listener for the load event on the #metaslider-id-640 element
-var metasliderElement = document.getElementById('metaslider-id-640');
+// You can call the function without providing a totalWidth argument,
+// and it will use the default value of 1520 pixels.
+handleMetaslider(); // Default totalWidth of 1520px is used
 
-if (metasliderElement) {
-  metasliderElement.addEventListener('load', handleMetaslider);
-} else {
-  // If #metaslider-id-640 is not present, call handleMetaslider directly
-  handleMetaslider();
-}
+// Call the function when the DOM content is loaded
+document.addEventListener('DOMContentLoaded', handleMetaslider);
 
-// // Call the function when the DOM content is loaded
-// document.addEventListener('DOMContentLoaded', handleMetaslider);
+// Call the function when the window is resized
+window.addEventListener('resize', handleMetaslider);
 
-// // Call the function when the window is resized
-// window.addEventListener('resize', handleMetaslider);
-
-// // Call the function when the page is reloaded
-// window.addEventListener('load', handleMetaslider);
-// window.onload = function() {
-//     handleMetaslider();
-//   };
+// Call the function when the page is reloaded
+window.addEventListener('load', handleMetaslider);
+window.onload = function() {
+    handleMetaslider();
+  };
