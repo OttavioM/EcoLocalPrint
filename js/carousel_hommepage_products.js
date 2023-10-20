@@ -57,7 +57,7 @@
     console.log('JS with DOM');
   
     // Now, check if the ul.slides width is greater than totalWidth
-    if (ulElement.offsetWidth > totalWidth) {
+    if (ulElement.offsetWidth/10 > totalWidth) {
       ulElement.style.display = 'flex';
       ulElement.style.justifyContent = 'center'; // Add justify-content: center
       ulElement.style.width = '100%';
