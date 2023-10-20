@@ -67,13 +67,35 @@
 //   }
 // }
 
-function handleMetaslider(totalWidth = 1520) {
-  // JavaScript code goes here
+function calculateTotalWidth() {
   var ulElement = document.getElementById('metaslider-id-640').querySelector('ul.slides');
   var liElements = ulElement.getElementsByTagName('li');
 
-  console.log('Total width including spaces: ' + totalWidth + 'px');
-  console.log('JS with DOM');
+  var totalWidth = 0;
+
+  for (var i = 0; i < liElements.length; i++) {
+    totalWidth += liElements[i].offsetWidth; // Width of the li element
+    if (i < liElements.length - 1) {
+      // Add space between elements (margin-right)
+      totalWidth += parseInt(window.getComputedStyle(liElements[i]).marginRight, 10);
+    }
+  }
+
+  return totalWidth;
+}
+
+// You can call this function to get the totalWidth
+var totalWidth = calculateTotalWidth();
+console.log('Total width including spaces: ' + totalWidth + 'px');
+
+
+function handleMetaslider(totalWidth = 1520) {
+  // JavaScript code goes here
+  // var ulElement = document.getElementById('metaslider-id-640').querySelector('ul.slides');
+  // var liElements = ulElement.getElementsByTagName('li');
+
+  // console.log('Total width including spaces: ' + totalWidth + 'px');
+  // console.log('JS with DOM');
 
   // Now, check if the ul.slides width is greater than totalWidth
   if (ulElement.offsetWidth > totalWidth) {
@@ -100,5 +122,6 @@ window.addEventListener('resize', handleMetaslider);
 // Call the function when the page is reloaded
 window.addEventListener('load', handleMetaslider);
 window.onload = function() {
+    var totalWidth = calculateTotalWidth();
     handleMetaslider();
   };
