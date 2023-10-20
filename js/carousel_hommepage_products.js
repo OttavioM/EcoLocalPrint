@@ -33,7 +33,7 @@
     // }
 // }
 
-window.onload = function() {
+// window.onload = function() {
     // JavaScript code goes here
     var ulElement = document.getElementById('metaslider-id-640').querySelector('ul.slides');
     var liElements = ulElement.getElementsByTagName('li');
@@ -67,5 +67,5 @@ window.onload = function() {
       ulElement.style.width = '1000%'; // as default
       console.log('here we have ulElement.offsetWidth < totalWidth');
     }
-  };
+//   };
   
