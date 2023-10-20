@@ -18,7 +18,9 @@ console.log('Total width including spaces: ' + totalWidth + 'px');
 
 // Now, check if the ul.slides width is greater than totalWidth
 if (ulElement.offsetWidth > totalWidth) {
-  ulElement.style.display = 'flex';
-} else {
-  ulElement.style.display = ''; // Revert to the default value if it's not greater
-}
+    ulElement.style.display = 'flex';
+    ulElement.style.justifyContent = 'center'; // Add justify-content: center
+  } else {
+    ulElement.style.display = 'block'; // Revert to the default value if it's not greater
+    ulElement.style.justifyContent = ''; // Revert justify-content if not greater
+  }
