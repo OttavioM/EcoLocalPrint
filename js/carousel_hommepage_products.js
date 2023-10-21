@@ -130,7 +130,12 @@ function handleZoomChange() {
 }
 
 // Call the function when the window is resized
-window.addEventListener('resize', handleMetaslider);
+// window.addEventListener('resize', handleMetaslider);
+
+window.addEventListener('resize', function() {
+  console.log('Window Resized')
+  handleMetaslider(totalWidth);
+});
 
 // Call the function when the page is reloaded
 // window.addEventListener('load', handleMetaslider);
