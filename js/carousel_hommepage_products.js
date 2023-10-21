@@ -116,7 +116,7 @@ handleMetaslider();
 function handleZoomChange() {
   // Recalculate totalWidth when the user zooms in or out
   var totalWidth = calculateTotalWidth();
-
+  console.log('Zooming listened')
   // Call handleMetaslider with the updated totalWidth
   handleMetaslider(totalWidth);
 }
@@ -128,7 +128,7 @@ window.addEventListener('resize', handleMetaslider);
 // window.addEventListener('load', handleMetaslider);
 window.onload = function() {
     var totalWidth = calculateTotalWidth();
-    console.log('Zooming listened')
+    console.log('loaded the webpage')
     console.log('Total width including spaces: ' + totalWidth + 'px');
     handleMetaslider(totalWidth);
   };
