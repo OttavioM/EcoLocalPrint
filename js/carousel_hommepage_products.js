@@ -66,34 +66,33 @@
 //     ulElement.style.width = '1000%'; // as default
 //   }
 // }
-window.onload = function calculateTotalWidth() {
+var totalWidth = null; // Declare totalWidth as a global variable
+
+function calculateTotalWidth() {
   var ulElement = document.getElementById('metaslider-id-640').querySelector('ul.slides');
   var liElements = ulElement.getElementsByTagName('li');
 
-  var totalWidth = 0;
+  var width = 0; // Use a local variable for the calculation
 
   for (var i = 0; i < liElements.length; i++) {
-    totalWidth += liElements[i].offsetWidth; // Width of the li element
+    width += liElements[i].offsetWidth; // Width of the li element
     if (i < liElements.length - 1) {
       // Add space between elements (margin-right)
-      totalWidth += parseInt(window.getComputedStyle(liElements[i]).marginRight, 10);
+      width += parseInt(window.getComputedStyle(liElements[i]).marginRight, 10);
     }
   }
 
-  // Check if totalWidth is an event object
-  if (totalWidth instanceof Event) {
-    console.log('totalWidth is an Event')
-    // Access the offsetWidth property of the event object
-    totalWidth = totalWidth.offsetWidth;
-  }
+  // Check if width is an event object (remove this part if it's not relevant)
 
-  console.log('forcing to be a number')
-  // Ensure totalWidth is a number
-  totalWidth = Number(totalWidth);
+  console.log('forcing to be a number');
+  // Ensure width is a number
+  width = Number(width);
 
-  return totalWidth;
-};
-var totalWidth = calculateTotalWidth();
+  return width; // Return the calculated value
+}
+
+// Call calculateTotalWidth to set the global variable
+calculateTotalWidth();
 
 function handleMetaslider(totalWidth = 1520) {
   // JavaScript code goes here
@@ -136,6 +135,7 @@ window.addEventListener('resize', handleMetaslider);
 // Call the function when the page is reloaded
 // window.addEventListener('load', handleMetaslider);
 window.onload = function() {
+    totalWidth = calculateTotalWidth(); // Calculate totalWidth after the page has loaded
     console.log('loaded the webpage')
     console.log('Total width including spaces: ' + totalWidth + 'px');
     handleMetaslider(totalWidth);
