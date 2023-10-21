@@ -112,6 +112,7 @@ function handleMetaslider(totalWidth = 1520) {
   }
 }
 
+handleMetaslider();
 // Function to handle changes in zoom level
 function handleZoomChange() {
   // Recalculate totalWidth when the user zooms in or out
