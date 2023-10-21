@@ -134,4 +134,4 @@ window.onload = function() {
   };
 
 // Add an event listener for changes in the user's zoom level (scaling)
-window.addEventListener('resize', handleZoomChange);
+// window.addEventListener('resize', handleZoomChange);
