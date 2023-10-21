@@ -93,6 +93,7 @@ window.onload = function calculateTotalWidth() {
 
   return totalWidth;
 };
+var totalWidth = calculateTotalWidth();
 
 function handleMetaslider(totalWidth = 1520) {
   // JavaScript code goes here
@@ -135,7 +136,6 @@ window.addEventListener('resize', handleMetaslider);
 // Call the function when the page is reloaded
 // window.addEventListener('load', handleMetaslider);
 window.onload = function() {
-    var totalWidth = calculateTotalWidth();
     console.log('loaded the webpage')
     console.log('Total width including spaces: ' + totalWidth + 'px');
     handleMetaslider(totalWidth);
