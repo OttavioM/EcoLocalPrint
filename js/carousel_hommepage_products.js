@@ -94,7 +94,7 @@ function calculateTotalWidth() {
 // Call calculateTotalWidth to set the global variable
 calculateTotalWidth();
 
-function handleMetaslider(totalWidth = 1520) {
+function handleMetaslider(width = 1520) {
   // JavaScript code goes here
   var ulElement = document.getElementById('metaslider_container_640')//.querySelector('ul.slides');
   var liElements = ulElement.getElementsByTagName('li');
@@ -103,18 +103,18 @@ function handleMetaslider(totalWidth = 1520) {
   // console.log('JS with DOM');
 
   // Now, check if the ul.slides width is greater than totalWidth
-  if (ulElement.offsetWidth > totalWidth) {
+  if (ulElement.offsetWidth > width) {
     ulElement.style.display = 'flex';
     ulElement.style.justifyContent = 'center'; // Add justify-content: center
     ulElement.style.width = '100%';
     console.log('====================')
-    console.log('ul.slide.width is: ' + ulElement.offsetWidth + '> totalWidth: ' + totalWidth)
+    console.log('ul.slide.width is: ' + ulElement.offsetWidth + '> totalWidth: ' + width)
   } else {
     ulElement.style.display = 'block'; // Revert to the default value if it's not greater
     ulElement.style.justifyContent = ''; // Revert justify-content if not greater
     ulElement.style.width = '1000%'; // as default
     console.log('--------------------')
-    console.log('ul.slide.width is: ' + ulElement.offsetWidth + '> totalWidth: ' + totalWidth)
+    console.log('ul.slide.width is: ' + ulElement.offsetWidth + '> totalWidth: ' + width)
     console.log('ul.slide.width is < totalWidth')
   }
 }
@@ -135,9 +135,9 @@ window.addEventListener('resize', handleMetaslider);
 // Call the function when the page is reloaded
 // window.addEventListener('load', handleMetaslider);
 window.onload = function() {
-    totalWidth = calculateTotalWidth(); // Calculate totalWidth after the page has loaded
     console.log('loaded the webpage')
     console.log('Total width including spaces: ' + totalWidth + 'px');
+    totalWidth = calculateTotalWidth(); // Calculate totalWidth after the page has loaded
     handleMetaslider(totalWidth);
   };
 
