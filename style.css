@@ -51,6 +51,12 @@ b, strong{
 	}
   } */
 
+@media (min-width: 1520px) {
+	#metaslider-id-640 ul.slides {
+		margin-left: 14rem;
+	}
+  }
+
 #metaslider-id-640 a {
 	color: white!important;
 	text-decoration: none!important;
