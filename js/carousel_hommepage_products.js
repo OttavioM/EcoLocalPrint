@@ -66,8 +66,7 @@
 //     ulElement.style.width = '1000%'; // as default
 //   }
 // }
-window.onload = function() {
-function calculateTotalWidth() {
+window.onload = function calculateTotalWidth() {
   var ulElement = document.getElementById('metaslider-id-640').querySelector('ul.slides');
   var liElements = ulElement.getElementsByTagName('li');
 
@@ -93,7 +92,6 @@ function calculateTotalWidth() {
   totalWidth = Number(totalWidth);
 
   return totalWidth;
-}
 };
 
 function handleMetaslider(totalWidth = 1520) {
