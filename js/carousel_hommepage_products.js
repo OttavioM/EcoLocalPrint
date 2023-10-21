@@ -87,7 +87,7 @@ function calculateTotalWidth() {
   console.log('forcing to be a number');
   // Ensure width is a number
   width = Number(width);
-
+  console.log('Calculated width:', width); // Log the calculated width
   return width; // Return the calculated value
 }
 
