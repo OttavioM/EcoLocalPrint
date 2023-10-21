@@ -52,7 +52,7 @@ b, strong{
   } */
 
 @media (min-width: 1520px) {
-	#metaslider-id-640 {
+	#metaslider_container_640 {
 		margin-left: 14rem;
 	}
   }
