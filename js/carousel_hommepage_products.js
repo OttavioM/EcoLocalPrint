@@ -98,6 +98,7 @@ function handleMetaslider(totalWidth = 1520) {
     ulElement.style.display = 'flex';
     ulElement.style.justifyContent = 'center'; // Add justify-content: center
     ulElement.style.width = '100%';
+    console.log('====================')
     console.log('ul.slides.width: ' + ulElement.offsetWidth)
     console.log('ul.slide.width is > totalWidth')
   } else {
@@ -124,9 +125,10 @@ function handleZoomChange() {
 window.addEventListener('resize', handleMetaslider);
 
 // Call the function when the page is reloaded
-window.addEventListener('load', handleMetaslider);
+// window.addEventListener('load', handleMetaslider);
 window.onload = function() {
     var totalWidth = calculateTotalWidth();
+    console.log('Zooming listened')
     console.log('Total width including spaces: ' + totalWidth + 'px');
     handleMetaslider(totalWidth);
   };
