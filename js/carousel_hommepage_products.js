@@ -128,8 +128,8 @@ window.addEventListener('resize', handleMetaslider);
 window.onload = function() {
     var totalWidth = calculateTotalWidth();
     console.log('loaded the webpage')
-    console.log('Total width including spaces: ' + totalWidth + 'px');
-    handleMetaslider(totalWidth);
+    console.log('Total width including spaces: ' + totalWidth.offsetWidth + 'px');
+    handleMetaslider(totalWidth.offsetWidth);
   };
 
 // Add an event listener for changes in the user's zoom level (scaling)
