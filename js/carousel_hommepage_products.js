@@ -97,7 +97,7 @@ function handleMetaslider(totalWidth = 1520) {
   if (totalWidth instanceof Event) {
     console.log('totalWidth is an Event')
     // Access the offsetWidth property of the event object
-    totalWidth = totalWidth.currentTarget.offsetWidth;
+    totalWidth = totalWidth.offsetWidth;
   }
 
   // Now, check if the ul.slides width is greater than totalWidth
