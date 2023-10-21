@@ -67,7 +67,6 @@
 //   }
 // }
 
-// it looks like that now is good
 function calculateTotalWidth() {
   var ulElement = document.getElementById('metaslider-id-640').querySelector('ul.slides');
   var liElements = ulElement.getElementsByTagName('li');
@@ -88,14 +87,11 @@ function calculateTotalWidth() {
 
 function handleMetaslider(totalWidth = 1520) {
   // JavaScript code goes here
-  var ulElement = document.getElementById('metaslider_container_640')//.querySelector('ul.slides');
+  var ulElement = document.getElementById('metaslider-id-640')//.querySelector('ul.slides');
   var liElements = ulElement.getElementsByTagName('li');
 
   // console.log('Total width including spaces: ' + totalWidth + 'px');
   // console.log('JS with DOM');
-  ulElement.style.display = 'block'; // Revert to the default value if it's not greater
-  ulElement.style.justifyContent = ''; // Revert justify-content if not greater
-  ulElement.style.width = '1000%'; // as default
 
   console.log('ul.slides.width: ' + ulElement.offsetWidth)
   // Now, check if the ul.slides width is greater than totalWidth
