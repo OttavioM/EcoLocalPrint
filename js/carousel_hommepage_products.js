@@ -81,12 +81,12 @@ function calculateTotalWidth() {
     }
   }
 
-  // Check if totalWidth is an event object
-  if (totalWidth instanceof Event) {
-    console.log('totalWidth is an Event')
-    // Access the offsetWidth property of the event object
-    totalWidth = totalWidth.offsetWidth;
-  }
+  // // Check if totalWidth is an event object
+  // if (totalWidth instanceof Event) {
+  //   console.log('totalWidth is an Event')
+  //   // Access the offsetWidth property of the event object
+  //   totalWidth = totalWidth.offsetWidth;
+  // }
 
   return totalWidth;
 }
