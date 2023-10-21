@@ -93,6 +93,12 @@ function handleMetaslider(totalWidth = 1520) {
   // console.log('Total width including spaces: ' + totalWidth + 'px');
   // console.log('JS with DOM');
 
+  // Check if totalWidth is an event object
+  if (totalWidth instanceof Event) {
+    // Access the offsetWidth property of the event object
+    totalWidth = totalWidth.offsetWidth;
+  }
+  
   // Now, check if the ul.slides width is greater than totalWidth
   if (ulElement.offsetWidth > totalWidth) {
     ulElement.style.display = 'flex';
@@ -117,7 +123,7 @@ function handleZoomChange() {
   var totalWidth = calculateTotalWidth();
   console.log('Zooming listened')
   // Call handleMetaslider with the updated totalWidth
-  handleMetaslider(totalWidth.offsetWidth);
+  handleMetaslider(totalWidth);
 }
 
 // Call the function when the window is resized
