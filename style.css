@@ -272,3 +272,8 @@ over the letters due to a <br> in the code*/
     position: relative;
     margin-top: 1.56em!important;
 }
+
+/* POST BACKGROUND WHITE */
+.hentry {
+	background-color: white!important;
+}
