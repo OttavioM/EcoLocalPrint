@@ -277,3 +277,10 @@ over the letters due to a <br> in the code*/
 .post {
 	background-color: white!important;
 }
+
+/* MOVE TO THE TOP SIDEBAR */
+@media screen and (min-width: 960px) {
+	.widget-area {
+		margin-top: -410px;
+	}
+}
