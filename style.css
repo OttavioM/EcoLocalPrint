@@ -281,12 +281,12 @@ over the letters due to a <br> in the code*/
 /* MOVE TO THE TOP SIDEBAR */
 @media screen and (min-width: 800px) {
 	.header-widget-region .widget{
-		display: none;
+		display: none!important;
 	}
 }
 
 @media screen and (max-width: 800px) {
-	#secondary .widget-area{
+	#secondary{
 		display: none;
 	}
 }
