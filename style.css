@@ -291,7 +291,7 @@ over the letters due to a <br> in the code*/
 	}
 
 	/* adjust the width of the primary without the secondary */
-	.single #primary{
+	#primary{
 			Float: none;
 			Width: 100%;
 		}
