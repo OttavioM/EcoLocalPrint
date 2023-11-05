@@ -222,11 +222,11 @@ add_action( 'wp_enqueue_scripts', 'my_custom_scripts' );
 // IT SHOULD HAVE BE WITH WIDGET AREA, BUT I DO NOT KNOW
 function display_widget_on_woocommerce_pages() {
     if (is_woocommerce()) {
-        // Get the current page's URL
-        $current_page_url = home_url(add_query_arg(array(), $wp->request));
+       // Get the current page's URL
+       $current_page_url = home_url(add_query_arg(array(), $wp->request);
 
-        // Output the URL to the JavaScript console
-        echo '<script>console.log("Current Page URL: ' . esc_url($current_page_url) . '");</script>';
+       // Output the URL to the JavaScript console
+       echo '<script>console.log("Current Page URL: ' . esc_url($current_page_url) . '");</script>';
     } else {
         echo '<style>.header-widget-region .widget { display: none; }</style>';
     }
