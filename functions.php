@@ -226,7 +226,7 @@ function display_widget_on_woocommerce_pages() {
        $current_page_url = home_url(add_query_arg(array(), $wp->request));
 
        // Output the URL to the JavaScript console
-       echo '<script>console.log("Current Page URL: ' . esc_url($current_page_url) . '");</script>';
+    //    echo '<script>console.log("Current Page URL: ' . esc_url($current_page_url) . '");</script>';
     } else {
         echo '<style>.header-widget-region .widget { display: none; }</style>';
     }
