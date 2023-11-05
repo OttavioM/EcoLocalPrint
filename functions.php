@@ -218,5 +218,17 @@ function my_custom_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'my_custom_scripts' );
 
+// HIDE WIDGET IN NOT WOOCOMMERCE PAGES
+// IT SHOULD HAVE BE WITH WIDGET AREA, BUT I DO NOT KNOW
+function display_widget_on_woocommerce_pages() {
+    if (is_woocommerce()) {
+        echo '<div class="header-widget-region widget">Widget Content</div>';
+    }
+}
+add_action('wp_head', 'display_widget_on_woocommerce_pages');
+
+
+
+
 // END OF THE PHP
 ?>
