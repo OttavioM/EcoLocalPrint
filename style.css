@@ -35,6 +35,12 @@ b, strong{
 	color: black!important;
 }
 
+/* PAGE TITLE CENTERED */
+#entry-header {
+	display: flex;
+	justify-content: center;
+}
+
 /* HOMEPAGE PRODUCTS SLIDER */
 
 /* @media (min-width: 768px) {
