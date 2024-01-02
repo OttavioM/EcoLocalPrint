@@ -36,7 +36,7 @@ b, strong{
 }
 
 /* PAGE TITLE CENTERED */
-#entry-header {
+.entry-header {
 	display: flex;
 	justify-content: center;
 }
