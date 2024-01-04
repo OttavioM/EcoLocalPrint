@@ -30,7 +30,7 @@ function custom_remove_footer_credit () {
 function custom_storefront_credit() {
 ?>
 <div class=”site-info”>
-© ECO LOCAL PRINT<?php echo get_bloginfo('name' ) . ' ' . date( 'Y' ); ?>
+© ECO LOCAL PRINT<?php echo get_bloginfo('name' ) . ' ' . '2022-'.date( 'Y' ); ?>
 </div><!– .site-info –>
 <?php
 }
