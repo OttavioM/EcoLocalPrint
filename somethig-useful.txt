@@ -1,0 +1,27 @@
+/* Header Wrapper */
+.site-header .col-full {
+    display: flex;
+}
+
+/* Site Logo */
+.site-header .site-branding {
+    order: 1;
+    width: 25%!important;
+    margin-right: 0!important;
+    padding-right: 10px;
+}
+
+/* Searchfield */ 
+.site-header .site-search {
+    order: 2;
+    width: 50%!important;
+    padding-right: 20px;
+}
+
+
+/* Navigation */
+.site-header .secondary-navigation {
+    order: 3;
+    width: 25%!important;
+    margin: 0!important;
+}
