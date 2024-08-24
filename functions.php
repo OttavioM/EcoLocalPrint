@@ -233,7 +233,16 @@ function display_widget_on_woocommerce_pages() {
 }
 add_action('wp_head', 'display_widget_on_woocommerce_pages');
 
-
+// Customize search plugin to search wider in tags also
+function storefront_product_search() {
+    if ( storefront_is_woocommerce_activated() ) {
+        ?>
+        <div class="site-search">
+            <?php the_widget( 'WC_Widget_Product_Search', 'title=' ); ?>
+        </div>
+        <?php
+    }
+}
 
 // END OF THE PHP
 ?>
