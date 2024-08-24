@@ -244,26 +244,34 @@ function storefront_product_search() {
     }
 }
 
-function custom_woocommerce_product_search( $query ) {
-    if ( ! is_admin() && $query->is_main_query() && is_search() && isset( $_GET['s'] ) ) {
-        // Ensure WooCommerce is active
-        if ( class_exists( 'WooCommerce' ) ) {
-            $query->set( 'post_type', array( 'product' ) );
+// Function to modify the search query to include product tags
+function custom_product_search_include_tags( $query ) {
+    if ( ! is_admin() && $query->is_search() && $query->is_main_query() && isset($_GET['s']) && isset($_GET['post_type']) && 'product' === $_GET['post_type'] ) {
+        
+        // Join term_relationships and term_taxonomy to include product tags
+        add_filter( 'posts_join', function( $join ) {
+            global $wpdb;
+            return $join . " LEFT JOIN {$wpdb->term_relationships} tr ON tr.object_id = {$wpdb->posts}.ID
+                             LEFT JOIN {$wpdb->term_taxonomy} tt ON tt.term_taxonomy_id = tr.term_taxonomy_id
+                             LEFT JOIN {$wpdb->terms} t ON t.term_id = tt.term_id";
+        });
 
-            $tax_query = array(
-                array(
-                    'taxonomy' => 'product_tag',
-                    'field'    => 'name',
-                    'terms'    => $query->query_vars['s'],
-                    'operator' => 'LIKE', // Use LIKE for partial matches
-                ),
-            );
+        // Modify the search query to include product tags in the search
+        add_filter( 'posts_where', function( $where ) {
+            global $wpdb;
 
-            $query->set( 'tax_query', $tax_query );
-        }
+            // Ensure the search term is safe for SQL
+            $search_term = esc_sql( like_escape( $_GET['s'] ) );
+
+            // Extend the search query to include products with matching tags
+            $where .= $wpdb->prepare(" OR (tt.taxonomy = %s AND t.name LIKE %s)", 'product_tag', '%' . $search_term . '%');
+
+            return $where;
+        });
     }
 }
-add_action( 'pre_get_posts', 'custom_woocommerce_product_search' );
+add_action( 'pre_get_posts', 'custom_product_search_include_tags' );
+
 
 
 
