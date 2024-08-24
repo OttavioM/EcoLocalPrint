@@ -244,36 +244,27 @@ function storefront_product_search() {
     }
 }
 
-function custom_search_include_product_tags( $query ) {
-    // Ensure this is modifying the main query on the front-end and it’s a search query
-    if ( ! is_admin() && $query->is_main_query() && $query->is_search() ) {
-        // Include 'product' and 'page' post types in the search query
-        $query->set( 'post_type', array( 'product', 'page' ) );
+function custom_woocommerce_product_search( $query ) {
+    if ( ! is_admin() && $query->is_main_query() && is_search() && isset( $_GET['s'] ) ) {
+        // Ensure WooCommerce is active
+        if ( class_exists( 'WooCommerce' ) ) {
+            $query->set( 'post_type', array( 'product' ) );
 
-        // Get the search term from the query
-        $search_term = $query->query_vars['s'];
+            $tax_query = array(
+                array(
+                    'taxonomy' => 'product_tag',
+                    'field'    => 'name',
+                    'terms'    => $query->query_vars['s'],
+                    'operator' => 'LIKE', // Use LIKE for partial matches
+                ),
+            );
 
-        // Add a taxonomy query for product tags
-        $tax_query = array(
-            array(
-                'taxonomy' => 'product_tag',
-                'field'    => 'name',
-                'terms'    => $search_term,
-            ),
-        );
-
-        // Combine the default search with our custom taxonomy query
-        $meta_query = $query->get('meta_query');
-        if ( empty( $meta_query ) ) {
-            $meta_query = array();
+            $query->set( 'tax_query', $tax_query );
         }
-
-        // Append the tax_query to the existing meta_query if there is one
-        $meta_query[] = $tax_query;
-        $query->set('meta_query', $meta_query);
     }
 }
-add_action( 'pre_get_posts', 'custom_search_include_product_tags' );
+add_action( 'pre_get_posts', 'custom_woocommerce_product_search' );
+
 
 
 // END OF THE PHP
