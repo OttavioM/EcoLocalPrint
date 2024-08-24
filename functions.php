@@ -238,7 +238,7 @@ function storefront_product_search() {
     if ( storefront_is_woocommerce_activated() ) {
         ?>
         <div class="site-search">
-            <?php the_widget( 'WC_Widget_Product_Search', 'title=' ); ?>
+            <?php the_widget( 'widget.woocommerce.widget_product_search', 'title=' ); ?>
         </div>
         <?php
     }
