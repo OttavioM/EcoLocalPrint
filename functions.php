@@ -245,7 +245,7 @@ function storefront_product_search() {
 }
 
 function custom_search_include_product_tags( $query ) {
-    if ( ! is_admin() && $query->is_main_query() && $query->is_search() ) {
+    // if ( ! is_admin() && $query->is_main_query() && $query->is_search() ) {
         $query->set( 'post_type', array( 'product', 'page' ) ); // Include products and pages
         $tax_query = array(
             'relation' => 'OR',
@@ -257,7 +257,7 @@ function custom_search_include_product_tags( $query ) {
         );
         $query->set( 'tax_query', $tax_query );
     }
-}
+// }
 add_action( 'pre_get_posts', 'custom_search_include_product_tags' );
 
 // END OF THE PHP
