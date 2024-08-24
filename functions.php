@@ -244,19 +244,21 @@ function storefront_product_search() {
     }
 }
 
-function custom_product_tag_search( $query ) {
-    if ( ! is_admin() && $query->is_main_query() && $query->is_search() && isset($_GET['post_type']) && $_GET['post_type'] === 'product' ) {
-        $query->set( 'tax_query', array(
+function custom_search_include_product_tags( $query ) {
+    if ( ! is_admin() && $query->is_main_query() && $query->is_search() ) {
+        $query->set( 'post_type', array( 'product', 'page' ) ); // Include products and pages
+        $tax_query = array(
+            'relation' => 'OR',
             array(
                 'taxonomy' => 'product_tag',
                 'field'    => 'name',
                 'terms'    => $query->query_vars['s'],
             ),
-        ) );
-        $query->set( 'post_type', 'product' );
+        );
+        $query->set( 'tax_query', $tax_query );
     }
 }
-add_action( 'pre_get_posts', 'custom_product_tag_search' );
+add_action( 'pre_get_posts', 'custom_search_include_product_tags' );
 
 // END OF THE PHP
 ?>
