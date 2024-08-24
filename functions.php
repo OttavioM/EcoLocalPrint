@@ -245,20 +245,36 @@ function storefront_product_search() {
 }
 
 function custom_search_include_product_tags( $query ) {
-    // if ( ! is_admin() && $query->is_main_query() && $query->is_search() ) {
-        $query->set( 'post_type', array( 'product', 'page' ) ); // Include products and pages
+    // Ensure this is modifying the main query on the front-end and it’s a search query
+    if ( ! is_admin() && $query->is_main_query() && $query->is_search() ) {
+        // Include 'product' and 'page' post types in the search query
+        $query->set( 'post_type', array( 'product', 'page' ) );
+
+        // Get the search term from the query
+        $search_term = $query->query_vars['s'];
+
+        // Add a taxonomy query for product tags
         $tax_query = array(
-            'relation' => 'OR',
             array(
                 'taxonomy' => 'product_tag',
                 'field'    => 'name',
-                'terms'    => $query->query_vars['s'],
+                'terms'    => $search_term,
             ),
         );
-        $query->set( 'tax_query', $tax_query );
+
+        // Combine the default search with our custom taxonomy query
+        $meta_query = $query->get('meta_query');
+        if ( empty( $meta_query ) ) {
+            $meta_query = array();
+        }
+
+        // Append the tax_query to the existing meta_query if there is one
+        $meta_query[] = $tax_query;
+        $query->set('meta_query', $meta_query);
     }
-// }
+}
 add_action( 'pre_get_posts', 'custom_search_include_product_tags' );
+
 
 // END OF THE PHP
 ?>
