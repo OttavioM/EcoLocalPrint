@@ -72,7 +72,8 @@ function ds_custom_wc_empty_cart_text()
             <p align="center" class="empty-cart-icon"><i class="bi bi-cart"></i></p>
         </div>
 		<div class="empty-cart">
-			<h2>👕Naked cart alert! Time to dress it up with some cool fashion. </h2>
+			<h2>👕Naked cart alert! </h2>
+            <h3> Time to dress it up with some cool fashion. </h3>
 			<p> Did you know? Every purchase helps restore habitats<i class="fa-solid fa-otter"></i>. Your cart is waiting to do some good! </p>
 		</div>
 	</div>';
