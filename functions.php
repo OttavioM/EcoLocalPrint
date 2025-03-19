@@ -21,7 +21,7 @@ function ecolocal_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'ecolocal_scripts' );
-add_action( 'wp_enqueue_scripts', 'tme_load_font_awesome' );
+// add_action( 'wp_enqueue_scripts', 'tme_load_font_awesome' );
 
 add_action( 'init', 'custom_remove_footer_credit', 10 );
 function custom_remove_footer_credit () {
