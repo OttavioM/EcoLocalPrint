@@ -258,8 +258,8 @@ table.productTable :nth-child(even) td{
 	justify-content: center!important;
 }
 
-.menu .current-menu-item a {
-    background-color: #cceae7;
+.current_page_item a {
+    background-color: #cceae7!important;
     color: #000000; 
 }
 
