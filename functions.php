@@ -14,14 +14,13 @@ function ecolocal_scripts() {
 	// User defined JavaScript
 	wp_enqueue_script( 'boostrap-script', get_template_directory_uri() .'/js/script.js', array('jquery'));
     // You can find the current URL for the latest version here: https://fontawesome.com/start
-    wp_enqueue_style( 'font-awesome-free', '//use.fontawesome.com/releases/v5.6.3/css/all.css' );
+    wp_enqueue_style( 'font-awesome-free', '//use.fontawesome.com/releases/v6.7.2/css/all.css' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'ecolocal_scripts' );
-// add_action( 'wp_enqueue_scripts', 'tme_load_font_awesome' );
 
 add_action( 'init', 'custom_remove_footer_credit', 10 );
 function custom_remove_footer_credit () {
