@@ -258,6 +258,11 @@ table.productTable :nth-child(even) td{
 	justify-content: center!important;
 }
 
+.menu .current-menu-item a {
+    background-color: #cceae7;
+    color: #000000; 
+}
+
 #sample_slider {
 	width:90%;
 }
