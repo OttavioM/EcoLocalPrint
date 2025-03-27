@@ -264,7 +264,7 @@ table.productTable :nth-child(even) td{
     color: #000000; 
 }
 
-.current_page_item a:hover {
+.main-navigation ul li:hover {
     background-color: #cceae7!important;
     color: #000000; 
 }
