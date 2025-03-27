@@ -150,6 +150,12 @@ b, strong{
 	}	
 }
 
+/* Cookie button move up and right */
+.cky-revisit-bottom-left {
+    bottom: 4em;
+    left: 1em;
+}
+
 .woocommerce-active .site-branding {
 	width:50%
 }
