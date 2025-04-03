@@ -1,0 +1,176 @@
+<style>
+    .tab-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .tab {
+        padding: 10px 15px;
+        margin: 5px;
+        cursor: pointer;
+        background: #ddd;
+        border-radius: 5px;
+        border: none;
+    }
+
+    .tab.active {
+        background: #0073aa;
+        color: white;
+    }
+
+    .size-guide-content {
+        display: none;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .size-guide-content.active {
+        display: block;
+    }
+</style>
+
+<div class="tab-container">
+    <button class="tab" onclick="showGuide('hoodies-gildan')">Hoodies Gildan</button>
+    <button class="tab" onclick="showGuide('hoodies-jhk')">Hoodies JHK</button>
+    <button class="tab" onclick="showGuide('tshirts')">T-Shirts</button>
+    <button class="tab" onclick="showGuide('longsleeve')">Longsleeves</button>
+</div>
+
+<div id="hoodies-gildan" class="size-guide-content">
+    <h2>Hoodies Gildan Size Guide</h2>
+    <div class="container-gildan">
+        <img src="https://ecolocalprint.com/wp-content/uploads/2025/04/Gildan-Hoodie-18500-size-guide.png">
+
+
+    </div>
+    <div style="overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>S</th>
+                    <th>M</th>
+                    <th>L</th>
+                    <th>XL</th>
+                    <th>2XL</th>
+                    <th>3XL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th colspan="7">
+                        CENTIMETERS
+                    </th>
+                </tr>
+                <tr>
+                    <td><strong>A) Length (cm)</strong></td>
+                    <td>69</td>
+                    <td>71</td>
+                    <td>74</td>
+                    <td>76</td>
+                    <td>79</td>
+                    <td>81</td>
+                </tr>
+                <tr>
+                    <td><strong>B) Chest Width (cm)</strong></td>
+                    <td>51</td>
+                    <td>56</td>
+                    <td>61</td>
+                    <td>66</td>
+                    <td>71</td>
+                    <td>76</td>
+                </tr>
+                <tr>
+                    <td><strong>C) Sleeve Length (cm)</strong></td>
+                    <td>85</td>
+                    <td>88</td>
+                    <td>90</td>
+                    <td>93</td>
+                    <td>95</td>
+                    <td>98</td>
+                </tr>
+                <tr>
+                    <th colspan="7">
+                        INCHES
+                    </th>
+                </tr>
+                <tr>
+                    <td><strong>A) Length (inches)</strong></td>
+                    <td>27 ⅙</td>
+                    <td>27 ⅞</td>
+                    <td>29 ⅛</td>
+                    <td>29 ⅞</td>
+                    <td>31 ⅑</td>
+                    <td>31 ⅞</td>
+                </tr>
+                <tr>
+                    <td><strong>B) Chest Width (inches)</strong></td>
+                    <td>20</td>
+                    <td>22</td>
+                    <td>24</td>
+                    <td>25 ⅞</td>
+                    <td>27 ⅞</td>
+                    <td>29 ⅞</td>
+                </tr>
+                <tr>
+                    <td><strong>C) Sleeve Length (inches)</strong></td>
+                    <td>33 ⅜</td>
+                    <td>34 ⅝</td>
+                    <td>35 ⅖</td>
+                    <td>36 ⅝</td>
+                    <td>37 ⅖</td>
+                    <td>38 ½</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="hoodies-jhk" class="size-guide-content">
+    <h2>Hoodies JHK Size Guide</h2>
+    <p>Table with sizes...</p>
+</div>
+
+<div id="tshirts" class="size-guide-content">
+    <h2>T-Shirts Size Guide</h2>
+    <p>Table with sizes...</p>
+</div>
+
+<div id="longsleeve" class="size-guide-content">
+    <h2>Longsleeves Size Guide</h2>
+    <p>Table with sizes...</p>
+</div>
+
+<!-- <script>
+    function showGuide(id) {
+        document.querySelectorAll('.size-guide-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    // Auto-select guide based on URL fragment
+    window.onload = function() {
+        const hash = window.location.hash.substring(1);
+        if (hash) showGuide(hash);
+    };
+</script> -->
+
+<script>
+    function showGuide(id) {
+        document.querySelectorAll('.size-guide-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        
+        let button = document.querySelector(`.tab[onclick="showGuide('${id}')"]`);
+        if (button) button.classList.add('active');
+    }
+
+    // Auto-select guide based on URL fragment
+    window.onload = function() {
+        const hash = window.location.hash.substring(1);
+        if (hash) showGuide(hash);
+    };
+</script>
