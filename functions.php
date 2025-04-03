@@ -287,7 +287,7 @@ require_once get_stylesheet_directory() . '/size-guide.php';
 // }
 
 // Add Size Guide tab
-// add_filter('woocommerce_product_tabs', 'add_size_guide_tab');
+add_filter('woocommerce_product_tabs', 'add_size_guide_tab');
 function add_size_guide_tab($tabs) {
     global $product;
     
