@@ -286,6 +286,15 @@ require_once get_stylesheet_directory() . '/size-guide.php';
 //     error_log('ERROR: File NOT found at: ' . $file_path);
 // }
 
+/** Remove product data tabs */
+// REMOVE ADDITIONAL INFO TAB
+add_filter( 'woocommerce_product_tabs', 'my_remove_product_tabs', 98 );
+
+function my_remove_product_tabs( $tabs ) {
+  unset( $tabs['additional_information'] ); // To remove the additional information tab
+  return $tabs;
+}
+
 // Add Size Guide tab
 add_filter('woocommerce_product_tabs', 'add_size_guide_tab');
 function add_size_guide_tab($tabs) {
