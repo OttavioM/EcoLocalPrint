@@ -119,7 +119,7 @@ function custom_size_guide_tshirts() {
 
 // Register all shortcodes
 function register_size_guide_shortcodes() {
-    add_shortcode('size_guide_gildan', 'custom_size_guide_hoodie_gildan');
+    add_shortcode('size_guide_gildan_hoodie', 'custom_size_guide_hoodie_gildan');
     add_shortcode('size_guide_jhk', 'custom_size_guide_hoodie_jhk');
     add_shortcode('size_guide_tshirts', 'custom_size_guide_tshirts');
 }
