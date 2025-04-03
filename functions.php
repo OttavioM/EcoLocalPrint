@@ -287,51 +287,49 @@ require_once get_stylesheet_directory() . '/size-guide.php';
 // }
 
 // Add Size Guide tab
-add_filter('woocommerce_product_tabs', 'add_size_guide_tab');
-add_action('wp', function() { 
-    function add_size_guide_tab($tabs) {
-        global $product;
-        
-        // Debug: Check if we have a product
-        if (!is_object($product)) {
-            error_log('Error: No product object available');
-            return $tabs;
-        }
-        
-        // Method 1: Get attribute directly from the array
-        $attributes = $product->get_attributes();
-        $guide_id = isset($attributes['size_guide_id']) ? $attributes['size_guide_id']->get_options()[0] : '';
-        
-        // Method 2: Alternative way to get custom attribute
-        if (empty($guide_id)) {
-            $guide_id = $product->get_meta('size_guide_id');
-        }
-        
-        error_log('Final guide ID: ' . print_r($guide_id, true));
-        
-        if (!empty($guide_id)) {
-            $guide_id = sanitize_title($guide_id);
-            $shortcode = "size_guide_{$guide_id}";
-            
-            if (shortcode_exists($shortcode)) {
-                $tabs['size_guide'] = array(
-                    'title'    => 'Size Guide',
-                    'priority' => 50,
-                    'callback' => function() use ($shortcode) {
-                        echo do_shortcode("[$shortcode]");
-                    }
-                );
-                error_log('Tab added successfully for: ' . $shortcode);
-            } else {
-                error_log('Shortcode not found: ' . $shortcode);
-            }
-        } else {
-            error_log('No size guide ID found for product ' . $product->get_id());
-        }
-        
+// add_filter('woocommerce_product_tabs', 'add_size_guide_tab');
+function add_size_guide_tab($tabs) {
+    global $product;
+    
+    // Debug: Check if we have a product
+    if (!is_object($product)) {
+        error_log('Error: No product object available');
         return $tabs;
     }
-});
+    
+    // Method 1: Get attribute directly from the array
+    $attributes = $product->get_attributes();
+    $guide_id = isset($attributes['size_guide_id']) ? $attributes['size_guide_id']->get_options()[0] : '';
+    
+    // Method 2: Alternative way to get custom attribute
+    if (empty($guide_id)) {
+        $guide_id = $product->get_meta('size_guide_id');
+    }
+    
+    error_log('Final guide ID: ' . print_r($guide_id, true));
+    
+    if (!empty($guide_id)) {
+        $guide_id = sanitize_title($guide_id);
+        $shortcode = "size_guide_{$guide_id}";
+        
+        if (shortcode_exists($shortcode)) {
+            $tabs['size_guide'] = array(
+                'title'    => 'Size Guide',
+                'priority' => 50,
+                'callback' => function() use ($shortcode) {
+                    echo do_shortcode("[$shortcode]");
+                }
+            );
+            error_log('Tab added successfully for: ' . $shortcode);
+        } else {
+            error_log('Shortcode not found: ' . $shortcode);
+        }
+    } else {
+        error_log('No size guide ID found for product ' . $product->get_id());
+    }
+    
+    return $tabs;
+}
 
 // END OF THE PHP
 ?>
