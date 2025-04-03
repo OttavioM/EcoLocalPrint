@@ -278,7 +278,7 @@ add_action( 'pre_get_posts', 'custom_product_search_include_tags' );
 // LOAD THE SIZE GUIDE
 // Load size guide functions
 // require_once get_template_directory_uri() . '/size-guide.php';
-$file_path = get_template_directory() . '/size-guide.php';
+$file_path = get_template_directory_uri() . '/size-guide.php';
 if (file_exists($file_path)) {
     error_log('File found at: ' . $file_path);
     require_once $file_path;
