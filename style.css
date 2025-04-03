@@ -322,3 +322,16 @@ has to be done */
 			Width: 100%;
 		}
 }
+
+.size-guide-content {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #eee;
+}
+.size-guide-content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.size-guide-content th {
+    background: #f5f5f5;
+}
