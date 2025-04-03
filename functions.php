@@ -290,7 +290,7 @@ require_once get_stylesheet_directory() . '/size-guide.php';
 add_filter('woocommerce_product_tabs', 'add_size_guide_tab');
 function add_size_guide_tab($tabs) {
     global $product;
-    
+    error_log('INIZIO');
     // Debug 1: Check if product object exists
     if (!is_object($product)) {
         error_log('Product object not available');
