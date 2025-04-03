@@ -291,13 +291,24 @@ add_filter('woocommerce_product_tabs', 'add_size_guide_tab');
 function add_size_guide_tab($tabs) {
     global $product;
     
-    $guide_id = get_attribute($product->get_id(), 'size_guide_id', true);
+    // Get attribute value (for variable products)
+    $guide_id = $product->get_attribute('size_guide');
+    
     if (!empty($guide_id)) {
+        // Clean the value (remove spaces, convert to lowercase)
+        $guide_id = sanitize_title($guide_id);
+        
         $tabs['size_guide'] = array(
             'title'    => 'Size Guide',
             'priority' => 50,
             'callback' => function() use ($guide_id) {
-                echo do_shortcode("[size_guide_{$guide_id}]");
+                // Check if shortcode exists first
+                if (shortcode_exists("size_guide_{$guide_id}")) {
+                    echo do_shortcode("[size_guide_{$guide_id}]");
+                } else {
+                    echo '<p>Size guide not available for this product.</p>';
+                    error_log("Missing shortcode: size_guide_{$guide_id}");
+                }
             }
         );
     }
