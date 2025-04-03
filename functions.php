@@ -286,5 +286,23 @@ require_once get_stylesheet_directory() . '/size-guide.php';
 //     error_log('ERROR: File NOT found at: ' . $file_path);
 // }
 
+// Add Size Guide tab
+add_filter('woocommerce_product_tabs', 'add_size_guide_tab');
+function add_size_guide_tab($tabs) {
+    global $product;
+    
+    $guide_id = get_post_meta($product->get_id(), 'size_guide_id', true);
+    if (!empty($guide_id)) {
+        $tabs['size_guide'] = array(
+            'title'    => 'Size Guide',
+            'priority' => 50,
+            'callback' => function() use ($guide_id) {
+                echo do_shortcode("[size_guide_{$guide_id}]");
+            }
+        );
+    }
+    return $tabs;
+}
+
 // END OF THE PHP
 ?>
