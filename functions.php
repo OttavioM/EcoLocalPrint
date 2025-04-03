@@ -290,31 +290,27 @@ require_once get_stylesheet_directory() . '/size-guide.php';
 add_filter('woocommerce_product_tabs', 'add_size_guide_tab');
 function add_size_guide_tab($tabs) {
     global $product;
-    error_log('INIZIO');
-    // Debug 1: Check if product object exists
+    
+    // Debug: Check if we have a product
     if (!is_object($product)) {
-        error_log('Product object not available');
+        error_log('Error: No product object available');
         return $tabs;
     }
     
-    // Debug 2: Try different ways to get the attribute
-    $guide_id = $product->get_attribute('size_guide');
-    error_log('Attribute value (get_attribute): ' . $guide_id);
+    // Method 1: Get attribute directly from the array
+    $attributes = $product->get_attributes();
+    $guide_id = isset($attributes['size_guide_id']) ? $attributes['size_guide_id']->get_options()[0] : '';
     
-    // Alternative method
-    $guide_id_alt = $product->get_meta('size_guide');
-    error_log('Meta value (get_meta): ' . $guide_id_alt);
+    // Method 2: Alternative way to get custom attribute
+    if (empty($guide_id)) {
+        $guide_id = $product->get_meta('size_guide_id');
+    }
     
-    // Debug 3: List all attributes
-    error_log('All product attributes: ' . print_r($product->get_attributes(), true));
+    error_log('Final guide ID: ' . print_r($guide_id, true));
     
     if (!empty($guide_id)) {
         $guide_id = sanitize_title($guide_id);
-        error_log('Sanitized guide ID: ' . $guide_id);
-        
-        // Debug 4: Check shortcode existence
         $shortcode = "size_guide_{$guide_id}";
-        error_log('Checking shortcode: ' . $shortcode);
         
         if (shortcode_exists($shortcode)) {
             $tabs['size_guide'] = array(
@@ -324,12 +320,12 @@ function add_size_guide_tab($tabs) {
                     echo do_shortcode("[$shortcode]");
                 }
             );
-            error_log('Size Guide tab added successfully');
+            error_log('Tab added successfully for: ' . $shortcode);
         } else {
-            error_log('Shortcode does not exist: ' . $shortcode);
+            error_log('Shortcode not found: ' . $shortcode);
         }
     } else {
-        error_log('No size guide attribute found');
+        error_log('No size guide ID found for product ' . $product->get_id());
     }
     
     return $tabs;
