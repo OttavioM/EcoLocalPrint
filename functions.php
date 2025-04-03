@@ -291,7 +291,7 @@ add_filter('woocommerce_product_tabs', 'add_size_guide_tab');
 function add_size_guide_tab($tabs) {
     global $product;
     
-    $guide_id = get_post_meta($product->get_id(), 'size_guide_id', true);
+    $guide_id = get_attribute($product->get_id(), 'size_guide_id', true);
     if (!empty($guide_id)) {
         $tabs['size_guide'] = array(
             'title'    => 'Size Guide',
