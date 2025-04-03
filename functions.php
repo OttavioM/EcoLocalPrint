@@ -277,7 +277,7 @@ add_action( 'pre_get_posts', 'custom_product_search_include_tags' );
 
 // LOAD THE SIZE GUIDE
 // Load size guide functions
-require_once get_template_directory_uri() . 'guide-size.php';
+require_once get_template_directory_uri() . '/guide-size.php';
 
 // END OF THE PHP
 ?>
