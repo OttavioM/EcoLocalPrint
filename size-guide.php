@@ -127,7 +127,8 @@ function register_size_guide_shortcodes() {
 add_action('init', 'register_size_guide_shortcodes');
 
 // Creando un attributo size_guide_id in WP e mettendolo nelle felpe e magliette
-// della gildan in automatico la sua taglia e cosi con le altre
+// della gildan in automatico la sua taglia e cosi con le altre, questo pero deve
+// avere un altro attributo che si chiami brand
 function dynamic_size_guide_shortcode() {
     global $product;
     
@@ -142,7 +143,7 @@ function dynamic_size_guide_shortcode() {
     
     // Check the brand and display the appropriate size guide
     if (stripos($brand, 'gildan') !== false) {
-        echo custom_size_guide_hoodie_gildan();
+        add_shortcode('size_guide_gildan_hoodie', 'custom_size_guide_hoodie_gildan');
     } elseif (stripos($brand, 'jhk') !== false) {
         echo custom_size_guide_hoodie_jhk();
     } else {
@@ -153,3 +154,4 @@ function dynamic_size_guide_shortcode() {
     return ob_get_clean();
 }
 add_shortcode('dynamic_size_guide', 'dynamic_size_guide_shortcode');
+add_action('init', 'dynamic_size_guide_shortcode');
