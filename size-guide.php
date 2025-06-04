@@ -118,9 +118,38 @@ function custom_size_guide_tshirts() {
 }
 
 // Register all shortcodes
+// Solo in modo manuale, del tipo attributo nuovo e nuovo gildan_hoodie, per ognuna
 function register_size_guide_shortcodes() {
     add_shortcode('size_guide_gildan_hoodie', 'custom_size_guide_hoodie_gildan');
     add_shortcode('size_guide_jhk', 'custom_size_guide_hoodie_jhk');
     add_shortcode('size_guide_tshirts', 'custom_size_guide_tshirts');
 }
 add_action('init', 'register_size_guide_shortcodes');
+
+// Creando un attributo size_guide_id in WP e mettendolo nelle felpe e magliette
+// della gildan in automatico la sua taglia e cosi con le altre
+function dynamic_size_guide_shortcode() {
+    global $product;
+    
+    if (!is_product() || !$product) {
+        return '';
+    }
+    
+    ob_start();
+    
+    // Get the brand attribute
+    $brand = $product->get_attribute('pa_brand'); // 'pa_' prefix for WooCommerce attributes
+    
+    // Check the brand and display the appropriate size guide
+    if (stripos($brand, 'gildan') !== false) {
+        echo custom_size_guide_hoodie_gildan();
+    } elseif (stripos($brand, 'jhk') !== false) {
+        echo custom_size_guide_hoodie_jhk();
+    } else {
+        // Default size guide if no specific brand is matched
+        echo custom_size_guide_tshirts();
+    }
+    
+    return ob_get_clean();
+}
+add_shortcode('dynamic_size_guide', 'dynamic_size_guide_shortcode');
