@@ -142,7 +142,7 @@ function dynamic_size_guide_shortcode() {
         echo custom_size_guide_hoodie_jhk();
     } else {
         // Default size guide if no specific brand is matched
-
+        echo custom_size_guide_tshirts();
     }
     
     return ob_get_clean();
