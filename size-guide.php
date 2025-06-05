@@ -125,3 +125,6 @@ function register_size_guide_shortcodes() {
     add_shortcode('size_guide_tshirts', 'custom_size_guide_tshirts');
 }
 add_action('init', 'register_size_guide_shortcodes');
+
+// END OF THE PHP
+?>
