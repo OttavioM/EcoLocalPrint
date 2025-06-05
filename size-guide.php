@@ -127,33 +127,35 @@ function register_size_guide_shortcodes() {
 add_action('init', 'register_size_guide_shortcodes');
 
 /**
- * Add size guide as product attribute
+ * Display Size Guide Based on Product Attribute
  */
-function add_size_guide_to_product() {
+function display_size_guide_from_attribute() {
     global $product;
     
-    // Only for certain product categories
-    if (has_term('hoodies', 'product_cat', $product->get_id())) {
-        $brand = ''; // Determine brand here
-        
-        if ($brand === 'gildan') {
-            echo '<div class="size-guide-section">';
-            echo custom_size_guide_hoodie_gildan();
-            echo '</div>';
-        }
-        elseif ($brand === 'jhk') {
-            echo '<div class="size-guide-section">';
-            echo custom_size_guide_hoodie_jhk();
-            echo '</div>';
-        }
+    // Get size_guide_id attribute value
+    $guide_id = $product->get_attribute('size_guide_id');
+    
+    // If no guide specified, do nothing
+    if (empty($guide_id)) return;
+    
+    // Sanitize and validate the guide ID
+    $valid_guides = ['gildan_hoodie', 'jhk', 'tshirts'];
+    $clean_id = sanitize_key($guide_id);
+    
+    if (!in_array($clean_id, $valid_guides)) {
+        return; // Invalid guide ID
     }
-    elseif (has_term('t-shirts', 'product_cat', $product->get_id())) {
-        echo '<div class="size-guide-section">';
-        echo custom_size_guide_tshirts();
-        echo '</div>';
-    }
+    
+    // Generate the shortcode
+    $shortcode = "[size_guide_{$clean_id}]";
+    
+    // Output with container
+    echo '<section class="product-size-guide-section">';
+    echo do_shortcode($shortcode);
+    echo '</section>';
 }
-add_action('woocommerce_single_product_summary', 'add_size_guide_to_product', 25);
+add_action('woocommerce_after_single_product_summary', 'display_size_guide_from_attribute', 15);
+
 
 // END OF THE PHP
 ?>
