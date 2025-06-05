@@ -126,5 +126,34 @@ function register_size_guide_shortcodes() {
 }
 add_action('init', 'register_size_guide_shortcodes');
 
+/**
+ * Add size guide as product attribute
+ */
+function add_size_guide_to_product() {
+    global $product;
+    
+    // Only for certain product categories
+    if (has_term('hoodies', 'product_cat', $product->get_id())) {
+        $brand = ''; // Determine brand here
+        
+        if ($brand === 'gildan') {
+            echo '<div class="size-guide-section">';
+            echo custom_size_guide_hoodie_gildan();
+            echo '</div>';
+        }
+        elseif ($brand === 'jhk') {
+            echo '<div class="size-guide-section">';
+            echo custom_size_guide_hoodie_jhk();
+            echo '</div>';
+        }
+    }
+    elseif (has_term('t-shirts', 'product_cat', $product->get_id())) {
+        echo '<div class="size-guide-section">';
+        echo custom_size_guide_tshirts();
+        echo '</div>';
+    }
+}
+add_action('woocommerce_single_product_summary', 'add_size_guide_to_product', 25);
+
 // END OF THE PHP
 ?>
