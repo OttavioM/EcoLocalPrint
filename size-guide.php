@@ -156,7 +156,7 @@ function display_size_guide_from_attribute() {
 
     add_shortcode('size_guide_'.$shortcode, 'custom_size_guide_'.$shortcode);
 }
-add_action('woocommerce_after_single_product_summary', 'display_size_guide_from_attribute', 15);
+add_action('woocommerce_after_single_product_summary', 'display_size_guide_from_attribute');
 
 // END OF THE PHP
 ?>
