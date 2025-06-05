@@ -140,7 +140,11 @@ function dynamic_size_guide_shortcode() {
         add_shortcode('size_guide_gildan_hoodie', 'custom_size_guide_hoodie_gildan');
     } elseif (stripos($brand, 'jhk') !== false) {
         echo custom_size_guide_hoodie_jhk();
-    }     
+    } else {
+        // Default size guide if no specific brand is matched
+
+    }
+    
     return ob_get_clean();
 }
 add_action('init', 'dynamic_size_guide_shortcode');
