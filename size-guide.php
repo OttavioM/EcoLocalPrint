@@ -131,12 +131,14 @@ add_action('init', 'register_size_guide_shortcodes');
 // avere un altro attributo che si chiami brand
 function dynamic_size_guide_shortcode() {
     global $product;
-
+    
+    ob_start();
+    
     // Get the brand attribute
     $brand = $product->get_attribute('pa_brand'); // 'pa_' prefix for WooCommerce attributes
     
     // Check the brand and display the appropriate size guide
-    if (stripos($brand, 'gildan') == true) {
+    if (stripos($brand, 'gildan') !== false) {
         add_shortcode('size_guide_gildan_hoodie', 'custom_size_guide_hoodie_gildan');
     } elseif (stripos($brand, 'jhk') !== false) {
         echo custom_size_guide_hoodie_jhk();
@@ -147,4 +149,5 @@ function dynamic_size_guide_shortcode() {
     
     return ob_get_clean();
 }
+add_shortcode('dynamic_size_guide', 'dynamic_size_guide_shortcode');
 add_action('init', 'dynamic_size_guide_shortcode');
