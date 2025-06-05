@@ -139,7 +139,7 @@ function display_size_guide_from_attribute() {
     if (empty($guide_id)) return;
     
     // Sanitize and validate the guide ID
-    $valid_guides = ['gildan_hoodie', 'jhk', 'tshirts'];
+    $valid_guides = ['hoodie_gildan', 'jhk', 'tshirts'];
     $clean_id = sanitize_key($guide_id);
     
     if (!in_array($clean_id, $valid_guides)) {
@@ -153,6 +153,8 @@ function display_size_guide_from_attribute() {
     echo '<section class="product-size-guide-section">';
     echo do_shortcode($shortcode);
     echo '</section>';
+
+    add_shortcode('size_guide_'.$shortcode, 'custom_size_guide_'.$shortcode);
 }
 add_action('woocommerce_after_single_product_summary', 'display_size_guide_from_attribute', 15);
 
