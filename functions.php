@@ -311,9 +311,9 @@ function add_size_guide_tab($tabs) {
     $guide_id = isset($attributes['size_guide_id']) ? $attributes['size_guide_id']->get_options()[0] : '';
     
     // Method 2: Alternative way to get custom attribute
-    // if (empty($guide_id)) {
-    //     $guide_id = $product->get_meta('size_guide_id');
-    // }
+    if (empty($guide_id)) {
+        $guide_id = $product->get_meta('size_guide_id');
+    }
     
     error_log('Final guide ID: ' . print_r($guide_id, true));
     
