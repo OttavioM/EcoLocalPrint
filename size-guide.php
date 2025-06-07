@@ -129,42 +129,34 @@ add_action('init', 'register_size_guide_shortcodes');
 /**
  * Display Size Guide Based on Product Attribute
  */
-add_filter('woocommerce_product_tabs', 'add_size_guide_tab');
-function add_size_guide_tab($tabs) {
+function display_size_guide_from_attribute() {
     global $product;
     
-    // Method 1: Check for global attribute
-    $guide_id = $product->get_attribute('size_guide'); // Use slug here
+    // Get size_guide_id attribute value
+    $guide_id = $product->get_attribute('size_guide_id');
     
-    // Method 2: Fallback to custom attribute (old method)
-    if (empty($guide_id)) {
-        $attributes = $product->get_attributes();
-        if (isset($attributes['size_guide_id'])) {
-            $guide_id = $attributes['size_guide_id']->get_options()[0];
-        }
+    // If no guide specified, do nothing
+    if (empty($guide_id)) return;
+    
+    // Sanitize and validate the guide ID
+    $valid_guides = ['hoodie_gildan', 'jhk', 'tshirts'];
+    $clean_id = sanitize_key($guide_id);
+    
+    if (!in_array($clean_id, $valid_guides)) {
+        return; // Invalid guide ID
     }
     
-    // Clean the ID
-    $guide_id = sanitize_title($guide_id);
-    error_log('Detected size guide: ' . $guide_id); // Debug
+    // Generate the shortcode
+    $shortcode = "[size_guide_{$clean_id}]";
     
-    if (!empty($guide_id)) {
-        $shortcode = "size_guide_{$guide_id}";
-        
-        if (shortcode_exists($shortcode)) {
-            $tabs['size_guide'] = array(
-                'title'    => 'Size Guide',
-                'priority' => 50,
-                'callback' => function() use ($shortcode) {
-                    echo do_shortcode("[$shortcode]");
-                }
-            );
-        }
-    }
-    
-    return $tabs;
-}
+    // Output with container
+    echo '<section class="product-size-guide-section">';
+    echo do_shortcode($shortcode);
+    echo '</section>';
 
+    add_shortcode('size_guide_'.$clean_id, 'custom_size_guide_'.$clean_id);
+}
+add_action('woocommerce_after_single_product_summary', 'display_size_guide_from_attribute');
 
 // END OF THE PHP
 ?>
