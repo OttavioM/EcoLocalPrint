@@ -345,16 +345,17 @@ function hide_menu_conditional($items, $args) {
     if ($args->theme_location == 'primary-menu') {
         // Check if the user is NOT logged in
         if (!is_user_logged_in()) {
-            // If user is NOT logged in, find and remove the 'Login' menu item
+            // Loop through menu items
             foreach ($items as $key => $item) {
-                if ($item->title == 'Login') {
+                // Check if the item has the class 'wcz-login-logout'
+                if (in_array('wcz-login-logout', $item->classes)) {
+                    // Remove the menu item
                     unset($items[$key]);
                     break;
                 }
             }
         }
     }
-
     return $items;
 }
 
