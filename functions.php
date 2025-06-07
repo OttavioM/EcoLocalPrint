@@ -340,16 +340,12 @@ function add_size_guide_tab($tabs) {
     return $tabs;
 }
 
-function hide_menu_conditional($items, $args) {
-    if (isset($args->theme_location) && $args->theme_location == 'primary-menu') {
-        if (!is_user_logged_in()) {
-            foreach ($items as $key => $item) {
-                // Check by class, URL, or title
-                if (
-                    (isset($item->classes) && in_array('wcz-login-logout', $item->classes)) ||
-                    (isset($item->url) && strpos($item->url, 'wp-login') !== false) ||
-                    (isset($item->title) && $item->title == 'Login')
-                ) {
+function remove_logout_menu_item($items, $args) {
+    if ($args->theme_location == 'primary') {
+        foreach ($items as $key => $item) {
+            if (is_object($item) && isset($item->classes) && in_array('wcz-login-logout', $item->classes)) {
+                // Additional check for logout URL pattern
+                if (strpos($item->url, '?action=logout') !== false) {
                     unset($items[$key]);
                 }
             }
@@ -357,7 +353,7 @@ function hide_menu_conditional($items, $args) {
     }
     return $items;
 }
-add_filter('wp_nav_menu_objects', 'hide_menu_conditional', 999, 2);
+add_filter('wp_nav_menu_objects', 'remove_logout_menu_item', 10, 2);
 
 // END OF THE PHP
 ?>
