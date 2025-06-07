@@ -341,25 +341,23 @@ function add_size_guide_tab($tabs) {
 }
 
 function hide_menu_conditional($items, $args) {
-    // Check if the menu location is your primary menu
-    if ($args->theme_location == 'primary-menu') {
-        // Check if the user is NOT logged in
+    if (isset($args->theme_location) && $args->theme_location == 'primary-menu') {
         if (!is_user_logged_in()) {
-            // Loop through menu items
             foreach ($items as $key => $item) {
-                // Check if the item has the class 'wcz-login-logout'
-                if (in_array('wcz-login-logout', $item->classes)) {
-                    // Remove the menu item
+                // Check by class, URL, or title
+                if (
+                    (isset($item->classes) && in_array('wcz-login-logout', $item->classes)) ||
+                    (isset($item->url) && strpos($item->url, 'wp-login') !== false) ||
+                    (isset($item->title) && $item->title == 'Login')
+                ) {
                     unset($items[$key]);
-                    break;
                 }
             }
         }
     }
     return $items;
 }
-
-add_filter('wp_nav_menu_objects', 'hide_menu_conditional', 10, 2);
+add_filter('wp_nav_menu_objects', 'hide_menu_conditional', 999, 2);
 
 // END OF THE PHP
 ?>
