@@ -129,34 +129,42 @@ add_action('init', 'register_size_guide_shortcodes');
 /**
  * Display Size Guide Based on Product Attribute
  */
-function display_size_guide_from_attribute() {
+add_filter('woocommerce_product_tabs', 'add_size_guide_tab');
+function add_size_guide_tab($tabs) {
     global $product;
     
-    // Get size_guide_id attribute value
-    $guide_id = $product->get_attribute('size_guide_id');
+    // 1. First try global attribute (proper method)
+    $guide_id = $product->get_attribute('pa_size_guide'); // Note 'pa_' prefix
     
-    // If no guide specified, do nothing
-    if (empty($guide_id)) return;
-    
-    // Sanitize and validate the guide ID
-    $valid_guides = ['hoodie_gildan', 'jhk', 'tshirts'];
-    $clean_id = sanitize_key($guide_id);
-    
-    if (!in_array($clean_id, $valid_guides)) {
-        return; // Invalid guide ID
+    // 2. Fallback to custom attribute (legacy method)
+    if (empty($guide_id)) {
+        $attributes = $product->get_attributes();
+        if (isset($attributes['size_guide'])) {
+            $guide_id = $attributes['size_guide']->get_options()[0];
+        }
     }
     
-    // Generate the shortcode
-    $shortcode = "[size_guide_{$clean_id}]";
+    // Clean and validate
+    $guide_id = sanitize_title($guide_id);
+    if (empty($guide_id)) return $tabs;
     
-    // Output with container
-    echo '<section class="product-size-guide-section">';
-    echo do_shortcode($shortcode);
-    echo '</section>';
-
-    add_shortcode('size_guide_'.$clean_id, 'custom_size_guide_'.$clean_id);
+    // Generate shortcode name
+    $shortcode = "size_guide_" . str_replace('-', '_', $guide_id);
+    
+    // Only add tab if shortcode exists
+    if (shortcode_exists($shortcode)) {
+        $tabs['size_guide'] = array(
+            'title'    => __('Size Guide', 'textdomain'),
+            'priority' => 50,
+            'callback' => function() use ($shortcode) {
+                echo do_shortcode("[$shortcode]");
+            }
+        );
+    }
+    
+    return $tabs;
 }
-add_action('woocommerce_after_single_product_summary', 'display_size_guide_from_attribute');
+
 
 // END OF THE PHP
 ?>
