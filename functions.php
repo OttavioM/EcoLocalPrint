@@ -311,9 +311,9 @@ function add_size_guide_tab($tabs) {
     $guide_id = isset($attributes['size_guide_id']) ? $attributes['size_guide_id']->get_options()[0] : '';
     
     // Method 2: Alternative way to get custom attribute
-    if (empty($guide_id)) {
-        $guide_id = $product->get_meta('size_guide_id');
-    }
+    // if (empty($guide_id)) {
+    //     $guide_id = $product->get_meta('size_guide_id');
+    // }
     
     error_log('Final guide ID: ' . print_r($guide_id, true));
     
@@ -339,6 +339,26 @@ function add_size_guide_tab($tabs) {
     
     return $tabs;
 }
+
+function hide_menu_conditional($items, $args) {
+    // Check if the menu location is your primary menu
+    if ($args->theme_location == 'primary-menu') {
+        // Check if the user is NOT logged in
+        if (!is_user_logged_in()) {
+            // If user is NOT logged in, find and remove the 'Login' menu item
+            foreach ($items as $key => $item) {
+                if ($item->title == 'Login') {
+                    unset($items[$key]);
+                    break;
+                }
+            }
+        }
+    }
+
+    return $items;
+}
+
+add_filter('wp_nav_menu_objects', 'hide_menu_conditional', 10, 2);
 
 // END OF THE PHP
 ?>
