@@ -341,25 +341,16 @@ function add_size_guide_tab($tabs) {
 }
 
 // ------REMOVE LOGIN and LOGOUT to avoid knowing the pyramyofdoom page--------
-function hide_menu_conditional($items, $args) {
-    // Check if the menu location is your primary menu
-    if ($args->theme_location == 'primary-menu') {
-        // Check if the user is logged in
-        if (is_user_logged_in()) {
-            // If user is logged in, find and remove the 'Login' menu item
-            foreach ($items as $key => $item) {
-                if ($item->title == 'Blog') {
-                    unset($items[$key]);
-                    break;
-                }
-            }
+// Completely remove the login/logout menu item from all menus
+function remove_wcz_login_logout_globally($items) {
+    foreach ($items as $key => $item) {
+        if (in_array('wcz-login-logout', (array)$item->classes)) {
+            unset($items[$key]);
         }
     }
-
     return $items;
 }
-
-add_filter('wp_nav_menu_objects', 'hide_menu_conditional', 10, 2);
+add_filter('wp_nav_menu_objects', 'remove_wcz_login_logout_globally', 999);
 
 // END OF THE PHP
 ?>
