@@ -341,20 +341,18 @@ function add_size_guide_tab($tabs) {
 }
 
 // ------REMOVE LOGIN and LOGOUT to avoid knowing the pyramyofdoom page--------
-function remove_logout_menu_item($items, $args) {
-    if (in_array($args->theme_location, ['primary', 'primary-menu', 'header'])) {
-        foreach ($items as $key => $item) {
-            if (is_object($item) && isset($item->classes) && in_array('wcz-login-logout', $item->classes)) {
-                // Additional check for logout URL pattern
-                if (strpos($item->url, '?action=logout') !== false) {
-                    unset($items[$key]);
-                }
+// Remove Storefront's automatic login/logout menu item
+function remove_storefront_login_logout_link( $items, $args ) {
+    if ( isset( $args->theme_location ) ) {
+        foreach ( $items as $key => $item ) {
+            if ( in_array( 'wcz-login-logout', $item->classes ) ) {
+                unset( $items[$key] );
             }
         }
     }
     return $items;
 }
-add_filter('wp_nav_menu_objects', 'remove_logout_menu_item', 10, 2);
+add_filter( 'wp_nav_menu_objects', 'remove_storefront_login_logout_link', 999 );
 
 // END OF THE PHP
 ?>
