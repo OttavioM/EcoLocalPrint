@@ -308,7 +308,19 @@ function add_size_guide_tab($tabs) {
     
     // Method 1: Get attribute directly from the array
     $attributes = $product->get_attributes();
-    $guide_id = isset($attributes['size_guide_id']) ? $attributes['size_guide_id']->get_options()[0] : '';
+    // $guide_id = isset($attributes['size_guide_id']) ? $attributes['size_guide_id']->get_options()[0] : '';
+    if (isset($attributes['size_guide_id'])) {
+        $size_guide_id = $product->get_attribute('size_guide_id');
+    } else {
+        // 2. Try global attribute as taxonomy
+        $tax_name = 'pa_size_guide_id';
+        if (taxonomy_exists($tax_name)) {
+            $terms = get_the_terms($product->get_id(), $tax_name);
+            if (!empty($terms) && !is_wp_error($terms)) {
+                $size_guide_id = $terms[0]->slug; // or ->name depending on what you need
+            }
+        }
+    }
     
     // Method 2: Alternative way to get custom attribute
     if (empty($guide_id)) {
