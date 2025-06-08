@@ -342,9 +342,26 @@ function add_size_guide_tab($tabs) {
 
 // ------REMOVE LOGIN and LOGOUT to avoid knowing the pyramyofdoom page--------
 // Completely remove the login/logout menu item from all menus
-add_filter('wp_nav_menu_items', 'remove_wcz_login_logout_menu_item', 999, 2);
-function remove_wcz_login_logout_menu_item($items, $args) {
-    return preg_replace('/<li[^>]*wcz-login-logout[^>]*>.*?<\/li>/i', '', $items);
+add_filter('wp_nav_menu_items', 'remove_wcz_login_logout_safely', 100, 2);
+function remove_wcz_login_logout_safely($items, $args) {
+    if (strpos($items, 'wcz-login-logout') !== false) {
+        // Load items into DOMDocument
+        libxml_use_internal_errors(true); // Prevent warnings
+        $dom = new DOMDocument();
+        $dom->loadHTML(mb_convert_encoding('<ul>' . $items . '</ul>', 'HTML-ENTITIES', 'UTF-8'));
+        $xpath = new DOMXPath($dom);
+
+        // Find all elements with the class wcz-login-logout
+        foreach ($xpath->query('//li[contains(@class, "wcz-login-logout")]') as $node) {
+            $node->parentNode->removeChild($node);
+        }
+
+        // Return cleaned HTML
+        $cleaned = $dom->saveHTML($dom->getElementsByTagName('ul')->item(0));
+        $cleaned = preg_replace('/^<ul>|<\/ul>$/', '', $cleaned); // remove <ul> wrapper
+        return $cleaned;
+    }
+    return $items;
 }
 
 
