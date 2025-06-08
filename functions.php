@@ -275,7 +275,7 @@ function custom_product_search_include_tags( $query ) {
 }
 add_action( 'pre_get_posts', 'custom_product_search_include_tags' );
 
-// LOAD THE SIZE GUIDE
+// ----------LOAD THE SIZE GUIDE-----------
 // Load size guide functions
 require_once get_stylesheet_directory() . '/size-guide.php';
 // $file_path = get_stylesheet_directory() . '/size-guide.php';
@@ -340,8 +340,9 @@ function add_size_guide_tab($tabs) {
     return $tabs;
 }
 
+// ------REMOVE LOGIN and LOGOUT to avoid knowing the pyramyofdoom page--------
 function remove_logout_menu_item($items, $args) {
-    if ($args->theme_location == 'primary') {
+    if ($args->theme_location == 'primary-navigation') {
         foreach ($items as $key => $item) {
             if (is_object($item) && isset($item->classes) && in_array('wcz-login-logout', $item->classes)) {
                 // Additional check for logout URL pattern
