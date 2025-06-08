@@ -342,7 +342,7 @@ function add_size_guide_tab($tabs) {
 
 // ------REMOVE LOGIN and LOGOUT to avoid knowing the pyramyofdoom page--------
 function remove_logout_menu_item($items, $args) {
-    if ($args->theme_location == 'primary-navigation') {
+    if (in_array($args->theme_location, ['primary', 'primary-menu', 'header'])) {
         foreach ($items as $key => $item) {
             if (is_object($item) && isset($item->classes) && in_array('wcz-login-logout', $item->classes)) {
                 // Additional check for logout URL pattern
