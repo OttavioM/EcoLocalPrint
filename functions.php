@@ -342,15 +342,17 @@ function add_size_guide_tab($tabs) {
 
 // ------REMOVE LOGIN and LOGOUT to avoid knowing the pyramyofdoom page--------
 // Completely remove the login/logout menu item from all menus
-function remove_wcz_login_logout_globally($items) {
-    foreach ($items as $key => $item) {
-        if (in_array('wcz-login-logout', (array)$item->classes)) {
-            unset($items[$key]);
+add_filter('wp_nav_menu_objects', 'remove_login_menu_item_for_logged_in_users', 10, 2);
+function remove_login_menu_item_for_logged_in_users($items, $args) {
+    if (is_user_logged_in()) {
+        foreach ($items as $key => $item) {
+            if (strpos($item->title, 'Login') !== false || $item->classes && in_array('wcz-login-logout', $item->classes)) {
+                unset($items[$key]);
+            }
         }
     }
     return $items;
 }
-add_filter('wp_nav_menu_objects', 'remove_wcz_login_logout_globally', 999);
 
 // END OF THE PHP
 ?>
