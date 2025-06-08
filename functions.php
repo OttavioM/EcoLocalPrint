@@ -31,7 +31,7 @@ function custom_remove_footer_credit () {
 function custom_storefront_credit() {
 ?>
 <div class=”site-info”>
-©<?php echo get_bloginfo('name' ) . ' ' . '2022-'.date( 'Y' ); ?>
+©<?php echo get_bloginfo('name' ) . ' '.date( 'Y' ); ?>
 </div><!– .site-info –>
 <?php
 }
