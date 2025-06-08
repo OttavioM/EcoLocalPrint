@@ -348,7 +348,7 @@ function hide_menu_conditional($items, $args) {
         if (is_user_logged_in()) {
             // If user is logged in, find and remove the 'Login' menu item
             foreach ($items as $key => $item) {
-                if ($item->title == 'Login') {
+                if ($item->title == 'Blog') {
                     unset($items[$key]);
                     break;
                 }
